@@ -1,0 +1,86 @@
+/* FIIILM — design tokens
+   Имена совпадают с твоим DS: bg/*, text/*, icon/*, border/*.
+   Примитивы (blue/600 и т.д.) выведены из скриншотов, blue/600 = #073DF5 задан тобой. */
+
+:root {
+  /* ---------- primitives ---------- */
+  --gray-0:    #FFFFFF;
+  --gray-10:   #F4F5F7;   /* фон плавающих пилюль */
+  --gray-25:   #F4F5F7;   /* bg/canvas — снят пипеткой с экспорта макета */
+  --gray-100:  #E3E5E9;   /* заглушка вместо фото */
+  --gray-500:  #8C939C;   /* text/secondary, icon/muted */
+  --gray-900:  #1C1C1E;
+
+  --blue-50:   #EEF1FE;
+  --blue-100:  #DCE3F5;   /* border/subtle */
+  --blue-200:  #B4C1ED;   /* border/default */
+  --blue-300:  #8FA2F0;
+  --blue-600:  #073DF5;
+  --blue-700:  #0530C4;
+
+  --green-700: #1B6B3A;
+  --red-500:   #E8392B;
+  --black-40:  rgba(0, 0, 0, 0.4);
+
+  /* ---------- bg ---------- */
+  --bg-canvas:         var(--gray-25);
+  --bg-surface:        var(--gray-0);
+  --bg-subtle:         var(--blue-50);
+  --bg-placeholder:    var(--gray-100);
+  --bg-accent:         var(--blue-600);
+  --bg-accent-pressed: var(--blue-700);
+  --bg-neutral:        var(--gray-500);
+  --bg-success:        var(--green-700);
+  --bg-overlay:        var(--black-40);
+
+  /* ---------- text ---------- */
+  --text-primary:   var(--blue-600);
+  --text-secondary: var(--gray-500);
+  --text-muted:     var(--blue-300);
+  --text-disabled:  var(--blue-200);
+  --text-on-accent: var(--gray-0);
+  --text-danger:    var(--red-500);
+  --text-default:   var(--gray-900);
+
+  /* ---------- icon ---------- */
+  --icon-accent:    var(--blue-600);
+  --icon-muted:     var(--gray-500);
+  --icon-on-accent: var(--gray-0);
+  --icon-danger:    var(--red-500);
+
+  /* ---------- border ---------- */
+  --border-subtle:  var(--blue-100);
+  --border-default: var(--blue-200);
+  --border-accent:  var(--blue-600);
+  --border-neutral: var(--gray-500);
+
+  /* ---------- typography ----------
+     pixel — временный подбор (VT323). Меняется здесь, в одном месте.
+     mono  — «обычный» текст приложения: SF Mono.
+     sf    — нативные элементы iOS: диалоги, шиты, статус-бар, клавиатура. */
+  --font-pixel: "VT323", ui-monospace, "SF Mono", Menlo, monospace; /* у VT323 нет кириллицы — она падает в моно, а не в засечки */
+  /* метрики пиксельных шрифтов сильно разные — множитель держит кегль одинаковым */
+  --pixel-scale: 1.25;
+  --pixel-weight: 400;
+  --font-mono:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sf:    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+
+  --fs-display: 34px;  /* цитата на входе, PACK IT UP */
+  --fs-title:   26px;  /* имя папки, имя персоны */
+  --fs-h1:      20px;  /* табы Crew/Cast, SIGN IN */
+  --fs-h2:      17px;  /* имя в списке, SPECIALISTS (N) */
+  --fs-body:    14px;
+  --fs-label:   13px;  /* mono-подписи, роли, SHOW ALL */
+  --fs-caption: 12px;  /* [ACTING], GOAL */
+
+  /* форма активного таба, снята из макета (вектор Rectangle 16) */
+  --tab-shape-l: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 191 48' preserveAspectRatio='none'%3E%3Cpath d='M0 4C0 1.79086 1.79086 0 4 0H179.611C181.567 0 183.236 1.41365 183.557 3.3424L191 48H0V4Z' fill='%23F4F5F7'/%3E%3C/svg%3E");
+  --tab-shape-r: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 191 48' preserveAspectRatio='none'%3E%3Cpath d='M191 4C191 1.79086 189.209 0 187 0H11.389C9.433 0 7.764 1.41365 7.443 3.3424L0 48H191V4Z' fill='%23F4F5F7'/%3E%3C/svg%3E");
+
+  /* ---------- layout ---------- */
+  --gutter: 16px;   /* поля экрана в Figma */
+  --row-gap: 14px;
+  --tabbar-h: 84px;
+  --statusbar-h: 54px;
+  --navbar-h: 48px;
+}

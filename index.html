@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIIILM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=VT323&display=swap" rel="stylesheet">
+<script>
+/* прототип правится постоянно — грузим стили и скрипты всегда свежими,
+   иначе браузер отдаёт старую версию и правки «не применяются» */
+var FRESH = Date.now();
+document.write('<link rel="stylesheet" href="tokens.css?t=' + FRESH + '">');
+document.write('<link rel="stylesheet" href="app.css?t=' + FRESH + '">');
+</script>
+</head>
+<body>
+
+<div class="stage">
+  <div class="phone">
+    <div class="statusbar">
+      <span id="clock">9:41</span>
+      <span class="right">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+        <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 10.3 6.4 8.2a3 3 0 0 1 4.2 0l-2.1 2.1ZM4.3 6.1a6 6 0 0 1 8.4 0l-1.4 1.4a4 4 0 0 0-5.6 0L4.3 6.1ZM2.2 4a9 9 0 0 1 12.6 0l-1.4 1.4a7 7 0 0 0-9.8 0L2.2 4Z"/></svg>
+        <svg width="26" height="13" viewBox="0 0 26 13" fill="currentColor"><rect x=".5" y=".5" width="22" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity=".35"/><rect x="2.5" y="2.5" width="18" height="8" rx="1.5"/><path d="M24 4.5v4c1-.4 1-3.6 0-4z"/></svg>
+      </span>
+    </div>
+
+    <div id="app"></div>
+    <div id="overlays"></div>
+    <div class="toast" id="toast"></div>
+    <div class="home-indicator"></div>
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-at" viewBox="0 0 24 24" fill="none">
+    <path d="M15.5 12C15.5 13.933 13.933 15.5 12 15.5C10.067 15.5 8.5 13.933 8.5 12C8.5 10.067 10.067 8.5 12 8.5C13.933 8.5 15.5 10.067 15.5 12Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M15.5 12V13.5C15.5 14.163 15.7634 14.7989 16.2322 15.2678C16.7011 15.7366 17.337 16 18 16C18.6631 16 19.2989 15.7366 19.7678 15.2678C20.2366 14.7989 20.5 14.163 20.5 13.5V12C20.5 10.0852 19.8535 8.22652 18.6652 6.72505C17.4769 5.22358 15.8165 4.16732 13.9529 3.72739C12.0893 3.28746 10.1318 3.48964 8.39751 4.30118C6.6632 5.11271 5.2537 6.48605 4.39738 8.19869C3.54106 9.91133 3.28809 11.8629 3.67945 13.7373C4.07081 15.6117 5.08357 17.299 6.55366 18.5259C8.02374 19.7528 9.86502 20.4474 11.7792 20.4971C13.6933 20.5469 15.5682 19.9489 17.1 18.8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none">
+    <path d="M5 12.5L9.5 17L19 7.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none">
+    <path d="M15 5L8 12L15 19" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none">
+    <path d="M6 6L12 12M12 12L18 18M12 12L18 6M12 12L6 18" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none">
+    <path d="M9 8H19C19.5523 8 20 8.44772 20 9V19C20 19.5523 19.5523 20 19 20H9C8.44772 20 8 19.5523 8 19V9C8 8.44772 8.44772 8 9 8Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M16 8V5C16 4.73478 15.8946 4.48043 15.7071 4.29289C15.5196 4.10536 15.2652 4 15 4H5C4.73478 4 4.48043 4.10536 4.29289 4.29289C4.10536 4.48043 4 4.73478 4 5V15C4 15.2652 4.10536 15.5196 4.29289 15.7071C4.48043 15.8946 4.73478 16 5 16H8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none">
+    <path d="M2.5 12C2.5 12 6 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 18 18.5 12 18.5C6 18.5 2.5 12 2.5 12Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24" fill="none">
+    <path d="M4 5H20L14 12.5V19L10 17V12.5L4 5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none">
+    <path d="M12 19.9999C12 19.9999 4.5 15.3999 4.5 9.99987C4.51439 9.1358 4.78881 8.29612 5.28746 7.59031C5.78611 6.8845 6.48586 6.34532 7.29546 6.04307C8.10507 5.74081 8.98696 5.68952 9.82615 5.89587C10.6653 6.10221 11.4229 6.55663 12 7.19987C12.5771 6.55663 13.3347 6.10221 14.1739 5.89587C15.013 5.68952 15.8949 5.74081 16.7045 6.04307C17.5141 6.34532 18.2139 6.8845 18.7125 7.59031C19.2112 8.29612 19.4856 9.1358 19.5 9.99987C19.5 15.3999 12 19.9999 12 19.9999Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-import" viewBox="0 0 24 24" fill="none">
+    <path d="M4 9V5C4 4.73478 4.10536 4.48043 4.29289 4.29289C4.48043 4.10536 4.73478 4 5 4H19C19.2652 4 19.5196 4.10536 19.7071 4.29289C19.8946 4.48043 20 4.73478 20 5V19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H5C4.73478 20 4.48043 19.8946 4.29289 19.7071C4.10536 19.5196 4 19.2652 4 19V15M3 12H13M10 15L13 12L10 9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-more" viewBox="0 0 24 24" fill="none">
+    <path d="M4.9999 13.6004C5.88356 13.6004 6.5999 12.884 6.5999 12.0004C6.5999 11.1167 5.88356 10.4004 4.9999 10.4004C4.11625 10.4004 3.3999 11.1167 3.3999 12.0004C3.3999 12.884 4.11625 13.6004 4.9999 13.6004Z" fill="currentColor"/>
+    <path d="M11.9999 13.6004C12.8836 13.6004 13.5999 12.884 13.5999 12.0004C13.5999 11.1167 12.8836 10.4004 11.9999 10.4004C11.1162 10.4004 10.3999 11.1167 10.3999 12.0004C10.3999 12.884 11.1162 13.6004 11.9999 13.6004Z" fill="currentColor"/>
+    <path d="M18.9999 13.6004C19.8836 13.6004 20.5999 12.884 20.5999 12.0004C20.5999 11.1167 19.8836 10.4004 18.9999 10.4004C18.1162 10.4004 17.3999 11.1167 17.3999 12.0004C17.3999 12.884 18.1162 13.6004 18.9999 13.6004Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-note" viewBox="0 0 24 24" fill="none">
+    <path d="M4 5H20V16H9L4 20V5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24" fill="none">
+    <path d="M4 20L5 16L16 5L19 8L8 19L4 20Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none">
+    <path d="M12 5V12M12 12V19M12 12H5M12 12H19" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-share" viewBox="0 0 24 24" fill="none">
+    <path d="M20.5 5.5C20.5 6.88071 19.3807 8 18 8C16.6193 8 15.5 6.88071 15.5 5.5C15.5 4.11929 16.6193 3 18 3C19.3807 3 20.5 4.11929 20.5 5.5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M8.5 12C8.5 13.3807 7.38071 14.5 6 14.5C4.61929 14.5 3.5 13.3807 3.5 12C3.5 10.6193 4.61929 9.5 6 9.5C7.38071 9.5 8.5 10.6193 8.5 12Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M20.5 18.5C20.5 19.8807 19.3807 21 18 21C16.6193 21 15.5 19.8807 15.5 18.5C15.5 17.1193 16.6193 16 18 16C19.3807 16 20.5 17.1193 20.5 18.5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M8.2002 10.8002L15.8002 6.7002M8.2002 13.2002L15.8002 17.3002" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-sort" viewBox="0 0 24 24" fill="none">
+    <path d="M8 4V20M12 8L8 4L4 8M16 20V4M20 16L16 20L12 16" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24" fill="none">
+    <path d="M4 7H6M6 7H9M6 7L7 20H17L18 7M9 7H15M9 7V4H15V7M15 7H18M18 7H20M10 11V17M14 11V17" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none">
+    <path d="M11 9H13V3H19L22 15V21H13V12H11V21H2V15L5 3H11V9ZM4 19H9V16H4V19ZM15 16V19H20V16H15Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24" fill="none">
+    <path d="M10 5H23L22.4004 8H8.69824L8.52344 8.7832L6.69727 17H8.74707L10.3027 10H22L20 20H2V3H8L10 5Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-saves" viewBox="0 0 24 24" fill="none">
+    <path d="M19 21L12 17L5 21V3H19V21Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-save" viewBox="0 0 24 24" fill="none">
+    <mask id="v2-stroke0_62_6537" fill="white">
+    <path d="M5 3H19V21L12 17L5 21V3Z"/>
+    </mask>
+    <path d="M5 3H19V21L12 17L5 21V3Z" stroke-width="4" stroke="currentColor" mask="url(#v2-stroke0_62_6537)"/>
+    <path d="M12 7V10M12 10V13M12 10H9M12 10H15" stroke-width="2" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-send" viewBox="0 0 24 24" fill="none">
+    <path d="M17.4375 19.7998L12 16L7 20V12L2 7.7998L21 3L17.4375 19.7998ZM9 11V15L18 6L9 11Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none">
+    <path d="M20 12H4m0 0 6.5-6.5M4 12l6.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-comment" viewBox="0 0 24 24" fill="none">
+    <g transform="translate(3 4)">
+      <path d="M17 13V1H1V13H5V16L9 13H17Z" stroke="currentColor" stroke-width="2"/>
+    </g>
+  </symbol>
+  <symbol id="i-tag" viewBox="0 0 16 16" fill="none">
+    <g transform="translate(0.67 0.67)">
+      <path d="M7.724 1.05733C7.47401 0.807268 7.13493 0.666742 6.78133 0.666667H2C1.64638 0.666667 1.30724 0.807142 1.05719 1.05719C0.807142 1.30724 0.666667 1.64638 0.666667 2V6.78133C0.666742 7.13493 0.807268 7.47401 1.05733 7.724L6.86 13.5267C7.16301 13.8278 7.57283 13.9968 8 13.9968C8.42717 13.9968 8.83699 13.8278 9.14 13.5267L13.5267 9.14C13.8278 8.83699 13.9968 8.42717 13.9968 8C13.9968 7.57283 13.8278 7.16301 13.5267 6.86L7.724 1.05733Z" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M5 4.33333C5 4.70152 4.70152 5 4.33333 5C3.96514 5 3.66667 4.70152 3.66667 4.33333C3.66667 3.96514 3.96514 3.66667 4.33333 3.66667C4.70152 3.66667 5 3.96514 5 4.33333Z" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </symbol>
+  <symbol id="i-drag" viewBox="0 0 20 20" fill="none">
+    <g transform="translate(5.9 2.6)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2.41667 7.41667C2.41667 7.8769 2.04357 8.25 1.58333 8.25C1.1231 8.25 0.75 7.8769 0.75 7.41667C0.75 6.95643 1.1231 6.58333 1.58333 6.58333C2.04357 6.58333 2.41667 6.95643 2.41667 7.41667Z"/>
+      <path d="M2.41667 1.58333C2.41667 2.04357 2.04357 2.41667 1.58333 2.41667C1.1231 2.41667 0.75 2.04357 0.75 1.58333C0.75 1.1231 1.1231 0.75 1.58333 0.75C2.04357 0.75 2.41667 1.1231 2.41667 1.58333Z"/>
+      <path d="M2.41667 13.25C2.41667 13.7102 2.04357 14.0833 1.58333 14.0833C1.1231 14.0833 0.75 13.7102 0.75 13.25C0.75 12.7898 1.1231 12.4167 1.58333 12.4167C2.04357 12.4167 2.41667 12.7898 2.41667 13.25Z"/>
+      <path d="M7.41667 7.41667C7.41667 7.8769 7.04357 8.25 6.58333 8.25C6.1231 8.25 5.75 7.8769 5.75 7.41667C5.75 6.95643 6.1231 6.58333 6.58333 6.58333C7.04357 6.58333 7.41667 6.95643 7.41667 7.41667Z"/>
+      <path d="M7.41667 1.58333C7.41667 2.04357 7.04357 2.41667 6.58333 2.41667C6.1231 2.41667 5.75 2.04357 5.75 1.58333C5.75 1.1231 6.1231 0.75 6.58333 0.75C7.04357 0.75 7.41667 1.1231 7.41667 1.58333Z"/>
+      <path d="M7.41667 13.25C7.41667 13.7102 7.04357 14.0833 6.58333 14.0833C6.1231 14.0833 5.75 13.7102 5.75 13.25C5.75 12.7898 6.1231 12.4167 6.58333 12.4167C7.04357 12.4167 7.41667 12.7898 7.41667 13.25Z"/>
+    </g>
+  </symbol>
+  <symbol id="i-clear" viewBox="0 0 24 24" fill="none">
+    <path d="M4.7 4.7L19.3 19.3M19.3 4.7L4.7 19.3" stroke="currentColor" stroke-width="2"/>
+  </symbol>
+  <symbol id="i-plus-pixel" viewBox="0 0 12 12">
+    <path d="M7 5H12V7H7V12H5V7H0V5H5V0H7V5Z" fill="currentColor"/>
+  </symbol>
+</defs></svg>
+
+<script>
+['data.js', 'store.js', 'ui.js'].forEach(function (f) {
+  document.write('<scr' + 'ipt src="' + f + '?t=' + FRESH + '"><\/scr' + 'ipt>');
+});
+</script>
+</body>
+</html>

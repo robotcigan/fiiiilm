@@ -1,0 +1,1237 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIIILM — реплика скриншотов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="nav">
+    <h1>FIIILM</h1>
+
+    <h2>01 · Вход</h2>
+    <a href="#entry">Стартовый экран (гость)</a>
+    <a href="#signin">Sign in</a>
+
+    <h2>02 · Поиск</h2>
+    <a href="#search-focus">Пустой поиск в фокусе</a>
+    <a href="#search-odyssey">«Oddyssey» — 0 / 3</a>
+    <a href="#search-nolan">«Nolan» — 1219</a>
+
+    <h2>03 · Карточка фильма</h2>
+    <a href="#movie-2099">2099: A Strange Odd-yssey</a>
+    <a href="#movie-crew">The Odyssey — Crew</a>
+    <a href="#movie-cast">The Odyssey — Cast</a>
+
+    <h2>04 · Карточка персоны</h2>
+    <a href="#person-robledo">Mark-Mason Robledo (2)</a>
+    <a href="#person-nolan">Christopher Nolan (78)</a>
+    <a href="#person-damon">Matt Damon (202)</a>
+    <a href="#person-damon-loading">Matt Damon — плейсхолдеры</a>
+
+    <h2>05 · Папки</h2>
+    <a href="#folders">Список папок</a>
+    <a href="#new-folder">Новая папка</a>
+
+    <h2>06 · Ростер</h2>
+    <a href="#roster">Папка Test — Roster</a>
+    <a href="#roster-bjjkkk">Папка Bjjkkk</a>
+
+    <h2>07 · Add content</h2>
+    <a href="#add-people">Поиск людей</a>
+    <a href="#add-movies">Поиск фильмов</a>
+
+    <h2>08 · Packaging</h2>
+    <a href="#packaging-empty">Пустое состояние</a>
+    <a href="#packaging-list">MY LIST</a>
+    <a href="#packaging-aggregate">AGGREGATE (набросок)</a>
+    <a href="#aggregate-variants">Разброс — 4 варианта</a>
+    <a href="#aggregate-concepts">AGGREGATE — 4 экрана</a>
+
+    <h2>09 · Заметки</h2>
+    <a href="#notes">Список заметок</a>
+    <a href="#note-editor">Редактор заметки</a>
+
+    <h2>10 · Профиль</h2>
+    <a href="#profile">Профиль и избранное</a>
+
+    <h2>Оверлеи</h2>
+    <a href="#" data-open="ov-select-folder">Шит SELECT FOLDER</a>
+    <a href="#" data-open="ov-select-folder-empty">Шит SELECT FOLDER (пусто)</a>
+    <a href="#" data-open="ov-role">Шит роли</a>
+    <a href="#" data-open="ov-row-menu">Меню строки ростера</a>
+    <a href="#" data-open="ov-fav-menu">Меню из одного пункта</a>
+    <a href="#" data-open="ov-profile-menu">Меню профиля</a>
+    <a href="#" data-open="ov-sort-menu">Меню сортировки</a>
+    <a href="#" data-open="ov-start-packaging">Диалог START PACKAGING</a>
+    <a href="#" data-open="ov-reason">Диалог Reason (пустой)</a>
+    <a href="#" data-open="ov-reason-filled">Диалог Reason (заполнен)</a>
+    <a href="#" data-open="ov-share">Диалог Share</a>
+    <a href="#" data-open="ov-push">Системный пуш-алерт</a>
+  </aside>
+
+  <main class="stage">
+    <div class="phone">
+
+      <div class="statusbar">
+        <span id="clock">10:24</span>
+        <span class="right">
+          <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+          <span style="font-size:14px;font-weight:600">LTE</span>
+          <svg width="26" height="13" viewBox="0 0 26 13"><rect x=".5" y=".5" width="22" height="12" rx="3.5" fill="none" stroke="#000" stroke-opacity=".35"/><rect x="2.5" y="2.5" width="4" height="8" rx="1.5" fill="#E8392B"/><path d="M24 4.5v4c1-.4 1-3.6 0-4z"/></svg>
+        </span>
+      </div>
+
+      <!-- ============================ 01 ВХОД ============================ -->
+
+      <section class="screen" id="entry" data-time="10:24">
+        <div class="pad" style="padding-top:8px"><button class="label" data-go="signin">SIGN IN</button></div>
+        <div class="scroll pad" style="display:flex;flex-direction:column;justify-content:center">
+          <p class="display">FILM LOVERS ARE SICK PEOPLE.<br>—F. TRUFFAUT</p>
+          <div class="search-field" style="margin-top:34px">
+            <input class="search-field__input" type="text" data-search="entry" placeholder="SEARCH BY NAME, GENRE, TAG">
+          </div>
+        </div>
+        <nav class="tabbar">
+          <button class="is-active"><svg class="ic"><use href="#i-search"/></svg><span>SEARCH</span></button>
+          <button data-go="add-people"><svg class="ic ic--lg ic--muted"><use href="#i-plus"/></svg></button>
+          <button data-go="folders"><svg class="ic ic--muted"><use href="#i-folder"/></svg><span>FOLDERS</span></button>
+        </nav>
+      </section>
+
+      <section class="screen" id="signin" data-time="10:24">
+        <div class="pad" style="display:flex;justify-content:flex-end;padding-top:8px">
+          <button style="background:var(--bg-subtle);padding:8px" data-go="entry"><svg class="ic ic--sm"><use href="#i-close"/></svg></button>
+        </div>
+        <div class="scroll pad" style="display:flex;flex-direction:column;justify-content:center;gap:26px">
+          <h2 class="display" style="text-align:center;letter-spacing:.08em">SIGN IN</h2>
+          <div style="background:var(--bg-subtle);border:1px solid var(--border-subtle);border-radius:22px;padding:16px 18px">
+            <div class="mono secondary" style="font-size:15px">Email</div>
+            <div class="mono secondary" style="font-size:19px;margin-top:8px">you@example.com</div>
+          </div>
+          <button class="btn btn--primary" data-toast="Этого экрана не было в скриншотах">Send code</button>
+        </div>
+      </section>
+
+      <!-- ============================ 02 ПОИСК ============================ -->
+
+      <section class="screen" id="search-focus" data-time="10:25">
+        <div class="pad" style="padding-top:8px"><button class="label" data-go="signin">SIGN IN</button></div>
+        <div class="pad" style="padding-top:22px">
+          <div class="search-field"><input class="search-field__input" type="text" data-search="focus" placeholder="SEARCH BY NAME, GENRE, TAG"></div>
+        </div>
+        <div class="scroll"></div>
+        <div class="keyboard">
+          <div class="kb-suggest"><div></div><div></div><div></div></div>
+          <div class="kb-row"><div class="kb-key">Й</div><div class="kb-key">Ц</div><div class="kb-key">У</div><div class="kb-key">К</div><div class="kb-key">Е</div><div class="kb-key">Н</div><div class="kb-key">Г</div><div class="kb-key">Ш</div><div class="kb-key">Щ</div><div class="kb-key">З</div><div class="kb-key">Х</div></div>
+          <div class="kb-row"><div class="kb-key">Ф</div><div class="kb-key">Ы</div><div class="kb-key">В</div><div class="kb-key">А</div><div class="kb-key">П</div><div class="kb-key">Р</div><div class="kb-key">О</div><div class="kb-key">Л</div><div class="kb-key">Д</div><div class="kb-key">Ж</div><div class="kb-key">Э</div></div>
+          <div class="kb-row"><div class="kb-key kb-key--dark">⇧</div><div class="kb-key">Я</div><div class="kb-key">Ч</div><div class="kb-key">С</div><div class="kb-key">М</div><div class="kb-key">И</div><div class="kb-key">Т</div><div class="kb-key">Ь</div><div class="kb-key">Б</div><div class="kb-key">Ю</div><div class="kb-key kb-key--dark">⌫</div></div>
+          <div class="kb-row"><div class="kb-key kb-key--dark kb-key--wide" style="flex:1.4;font-size:14px">123</div><div class="kb-key kb-key--dark" style="flex:1">☺</div><div class="kb-key kb-key--wide">Пробел</div><div class="kb-key kb-key--go" data-go="search-nolan">Найти</div></div>
+          <div class="kb-bottom"><span>🌐</span><span>🎤</span></div>
+        </div>
+      </section>
+
+      <section class="screen" id="search-odyssey" data-time="10:25">
+        <div class="pad" style="padding-top:8px"><button class="label" data-go="signin">SIGN IN</button></div>
+        <div class="pad" style="padding-top:18px">
+          <div class="search-field"><input class="search-field__input" type="text" data-search="odyssey" data-filter="#search-odyssey .row" value="Oddyssey" placeholder="SEARCH BY NAME, GENRE, TAG"><button class="search-field__clear" data-clear><svg class="ic"><use href="#i-close"/></svg></button></div>
+        </div>
+        <div class="scroll pad">
+          <div class="section-head"><span class="h2">SPECIALISTS (0)</span></div>
+          <p class="label secondary" style="padding:18px 0">No specialists found</p>
+          <div class="section-head"><span class="h2">MOVIES (3)</span><span class="show-all">SHOW ALL →</span></div>
+          <div class="row" data-go="movie-crew">
+            <img class="row__photo" src="assets/poster-odyssey.jpg" alt="">
+            <div class="row__body"><div class="row__name">THE ODYSSEY</div><div class="row__sub">2026</div><div class="row__tag">[ADVENTURE]</div></div>
+            <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><svg class="ic ic--muted"><use href="#i-plus"/></svg></div>
+          </div>
+          <div class="row" data-go="movie-2099">
+            <div class="row__photo"></div>
+            <div class="row__body"><div class="row__name">2099: A STRANGE ODD-YSSEY</div><div class="row__sub">2024</div><div class="row__tag">[SCIENCE FICTION]</div></div>
+            <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><svg class="ic ic--muted"><use href="#i-plus"/></svg></div>
+          </div>
+          <div class="row" data-go="movie-crew">
+            <img class="row__photo" src="assets/poster-making.jpg" alt="">
+            <div class="row__body"><div class="row__name">THE ODYSSEY: THE MAKING OF AN EPIC</div><div class="row__sub">2026</div><div class="row__tag">[DOCUMENTARY]</div></div>
+            <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><svg class="ic ic--muted"><use href="#i-plus"/></svg></div>
+          </div>
+        </div>
+        <nav class="tabbar">
+          <button class="is-active"><svg class="ic"><use href="#i-search"/></svg><span>SEARCH</span></button>
+          <button data-go="add-people"><svg class="ic ic--lg ic--muted"><use href="#i-plus"/></svg></button>
+          <button data-go="folders"><svg class="ic ic--muted"><use href="#i-folder"/></svg><span>FOLDERS</span></button>
+        </nav>
+      </section>
+
+      <section class="screen" id="search-nolan" data-time="10:26">
+        <div class="pad" style="padding-top:8px"><button class="label" data-go="signin">SIGN IN</button></div>
+        <div class="pad" style="padding-top:18px">
+          <div class="search-field"><input class="search-field__input" type="text" data-search="nolan" data-filter="#search-nolan .row" value="Nolan" placeholder="SEARCH BY NAME, GENRE, TAG"><button class="search-field__clear" data-clear><svg class="ic"><use href="#i-close"/></svg></button></div>
+          <div class="chips" style="margin-top:16px;align-items:center">
+            <button class="btn-filter" data-toast="Этого экрана не было в скриншотах">FILTER</button>
+            <span class="chip">[ACTING]</span><span class="chip">[COMEDY]</span>
+            <span class="chip">[DOCUMENTARY]</span><span class="chip">[ACTION]</span>
+          </div>
+        </div>
+        <div class="scroll pad">
+          <div class="section-head"><span class="h2">SPECIALISTS (1219)</span><span class="show-all">SHOW ALL →</span></div>
+          <div class="row" data-go="person-damon">
+            <div class="row__photo"></div>
+            <div class="row__body"><div class="row__name">YVETTE NOLAN</div><div class="row__sub">A COMMON EXPERIENCE, 2013</div><div class="row__tag">[ACTING]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+          <div class="row" data-go="person-damon">
+            <img class="row__photo" src="assets/tania.jpg" alt="">
+            <div class="row__body"><div class="row__name">TANIA NOLAN</div><div class="row__sub">THE CONVERT, 2024</div><div class="row__tag">[ACTING]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+          <div class="row" data-go="person-damon">
+            <img class="row__photo" src="assets/rory.jpg" alt="">
+            <div class="row__body"><div class="row__name">RORY NOLAN</div><div class="row__sub">DARE TO BE WILD, 2015</div><div class="row__tag">[ACTING]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+          <div class="row" data-go="person-damon">
+            <img class="row__photo" src="assets/winters.jpg" alt="">
+            <div class="row__body"><div class="row__name">NOLAN WINTERS</div><div class="row__sub">DERMATOPHAGIA, 2025</div><div class="row__tag">[ACTING]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+          <div class="row" data-go="person-nolan">
+            <img class="row__photo" src="assets/nolan.jpg" alt="">
+            <div class="row__body"><div class="row__name">CHRISTOPHER NOLAN</div><div class="row__sub">THE ODYSSEY, 2026</div><div class="row__tag">[DIRECTING]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+        </div>
+        <nav class="tabbar">
+          <button class="is-active"><svg class="ic"><use href="#i-search"/></svg><span>SEARCH</span></button>
+          <button data-go="add-people"><svg class="ic ic--lg ic--muted"><use href="#i-plus"/></svg></button>
+          <button data-go="folders"><svg class="ic ic--muted"><use href="#i-folder"/></svg><span>FOLDERS</span></button>
+        </nav>
+      </section>
+
+      <!-- ============================ 03 ФИЛЬМ ============================ -->
+
+      <section class="screen" id="movie-2099" data-time="10:25">
+        <div class="navbar">
+          <button data-go="search-odyssey"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <span class="nav-title">2099: A STRANGE ODD-YSSEY</span>
+          <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+        </div>
+        <div class="scroll">
+          <div class="movie-hero">
+            <div class="movie-hero__bg" style="background-image:url(assets/movie-hero.jpg)"></div>
+            <h2 class="movie-hero__title">2099: A Strange Odd-yssey</h2>
+            <div class="movie-hero__stats">
+              <div><b>100%</b><span>TMDB</span></div>
+              <div><b>PG</b><span>RATED</span></div>
+              <div><b>2m</b><span>RUNTIME</span></div>
+            </div>
+            <p class="movie-hero__meta">United States · ANIMATION · SCIENCE FICTION</p>
+          </div>
+          <div class="tabs-dot">
+            <button class="is-active">Crew</button><span class="dot">·</span>
+            <button data-go="movie-cast">Cast</button><span class="dot">·</span>
+            <button data-toast="Этого экрана не было в скриншотах">Details</button>
+          </div>
+          <div class="pad">
+            <div class="chips" style="margin-top:16px">
+              <span class="chip chip--outline">DIRECTING</span>
+              <span class="chip chip--outline">PRODUCTION</span>
+              <span class="chip chip--outline">WRITING</span>
+            </div>
+            <div class="dept-head">DIRECTING</div>
+            <div class="row" data-go="person-robledo">
+              <div class="row__photo row__photo--sm"></div>
+              <div class="row__body"><div class="row__name">MARK-MASON ROBLEDO</div><div class="row__sub">DIRECTOR</div></div>
+              <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><button data-open="ov-select-folder"><svg class="ic ic--muted"><use href="#i-plus"/></svg></button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="movie-crew" data-time="10:30">
+        <div class="navbar">
+          <button data-go="search-odyssey"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <span class="nav-title">THE ODYSSEY</span>
+          <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+        </div>
+        <div class="scroll">
+          <div class="movie-hero">
+            <div class="movie-hero__bg" style="background-image:url(assets/movie-hero.jpg)"></div>
+            <h2 class="movie-hero__title">The Odyssey</h2>
+            <p class="movie-hero__tagline">Defy the gods.</p>
+            <div class="movie-hero__stats">
+              <div><b>80%</b><span>TMDB</span></div>
+              <div><b>R</b><span>RATED</span></div>
+              <div><b>2h 53m</b><span>RUNTIME</span></div>
+            </div>
+            <p class="movie-hero__meta">United Kingdom · ADVENTURE · ACTION · FANTASY</p>
+          </div>
+          <div class="tabs-dot">
+            <button class="is-active">Crew</button><span class="dot">·</span>
+            <button data-go="movie-cast">Cast</button><span class="dot">·</span>
+            <button data-toast="Этого экрана не было в скриншотах">Details</button>
+          </div>
+          <div class="pad">
+            <div class="chips" style="margin-top:16px">
+              <span class="chip chip--outline">DIRECTING</span>
+              <span class="chip chip--outline">PRODUCTION</span>
+              <span class="chip chip--outline">WRITING</span>
+              <span class="chip chip--outline">ART</span>
+              <span class="chip chip--outline">CAMERA</span>
+            </div>
+            <div class="dept-head">DIRECTING</div>
+            <div class="row" data-go="person-nolan">
+              <img class="row__photo row__photo--sm" src="assets/nolan.jpg" alt="">
+              <div class="row__body"><div class="row__name">CHRISTOPHER NOLAN</div><div class="row__sub">DIRECTOR</div></div>
+              <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><button data-open="ov-select-folder"><svg class="ic ic--muted"><use href="#i-plus"/></svg></button></div>
+            </div>
+            <div class="row" data-go="person-damon">
+              <img class="row__photo row__photo--sm" src="assets/otero.jpg" alt="">
+              <div class="row__body"><div class="row__name">NILO OTERO</div><div class="row__sub">FIRST ASSISTANT DIRECTOR</div></div>
+              <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><button data-open="ov-select-folder"><svg class="ic ic--muted"><use href="#i-plus"/></svg></button></div>
+            </div>
+            <div class="row" data-go="person-damon">
+              <div class="row__photo row__photo--sm"></div>
+              <div class="row__body"><div class="row__name">ZACK SMITH</div><div class="row__sub">SECOND ASSISTANT DIRECTOR</div></div>
+              <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><button data-open="ov-select-folder"><svg class="ic ic--muted"><use href="#i-plus"/></svg></button></div>
+            </div>
+            <div class="row" data-go="person-damon">
+              <div class="row__photo row__photo--sm"></div>
+              <div class="row__body"><div class="row__name">YANN MARI FAGET</div><div class="row__sub">FIRST ASSISTANT DIRECTOR</div></div>
+              <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><button data-open="ov-select-folder"><svg class="ic ic--muted"><use href="#i-plus"/></svg></button></div>
+            </div>
+            <div class="row" data-go="person-damon">
+              <div class="row__photo row__photo--sm"></div>
+              <div class="row__body"><div class="row__name">ERIC GLASSER</div><div class="row__sub">FIRST ASSISTANT DIRECTOR</div></div>
+              <div class="row__actions"><span class="fav-badge"><svg class="ic ic--sm"><use href="#i-heart"/></svg>Added</span></div>
+            </div>
+            <div class="row" data-go="person-damon">
+              <div class="row__photo row__photo--sm"></div>
+              <div class="row__body"><div class="row__name">GARETH WINGROVE</div><div class="row__sub">SPECIAL EFFECTS SUPERVISOR</div></div>
+              <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><button data-open="ov-select-folder"><svg class="ic ic--muted"><use href="#i-plus"/></svg></button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="movie-cast" data-time="10:44">
+        <div class="navbar">
+          <button data-go="search-odyssey"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <span class="nav-title">THE ODYSSEY</span>
+          <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+        </div>
+        <div class="tabs-dot">
+          <button data-go="movie-crew">Crew</button><span class="dot">·</span>
+          <button class="is-active">Cast</button><span class="dot">·</span>
+          <button data-toast="Этого экрана не было в скриншотах">Details</button>
+        </div>
+        <div class="scroll pad">
+          <div class="dept-head" style="margin-top:8px">CAST</div>
+          <div class="row" data-go="person-damon">
+            <img class="row__photo row__photo--sm" src="assets/damon.jpg" alt="">
+            <div class="row__body"><div class="row__name">MATT DAMON</div><div class="row__sub">ODYSSEUS</div></div>
+            <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><button data-open="ov-select-folder"><svg class="ic ic--muted"><use href="#i-plus"/></svg></button></div>
+          </div>
+          <div class="row" data-go="person-damon">
+            <img class="row__photo row__photo--sm" src="assets/holland.jpg" alt="">
+            <div class="row__body"><div class="row__name">TOM HOLLAND</div><div class="row__sub">TELEMACHUS</div></div>
+            <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><button data-open="ov-select-folder"><svg class="ic ic--muted"><use href="#i-plus"/></svg></button></div>
+          </div>
+          <div class="row" data-go="person-damon">
+            <div class="row__photo row__photo--sm"></div>
+            <div class="row__body"><div class="row__name">ANNE HATHAWAY</div><div class="row__sub">PENELOPE</div></div>
+            <div class="row__actions"><svg class="ic ic--muted"><use href="#i-eye"/></svg><button data-open="ov-select-folder"><svg class="ic ic--muted"><use href="#i-plus"/></svg></button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ 04 ПЕРСОНА ============================ -->
+
+      <section class="screen" id="person-robledo" data-time="10:26">
+        <div class="navbar">
+          <button data-go="movie-2099"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+            <button data-open="ov-fav-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="scroll">
+          <div class="person-hero" style="background:var(--bg-placeholder)"></div>
+          <div class="pad" style="padding-top:16px">
+            <h2 class="title">Mark-Mason Robledo</h2>
+            <p class="caption" style="margin-top:8px">[DIRECTING]</p>
+            <div class="section-head" style="margin-top:22px"><span class="h2">DISCOGRAPHY (2)</span></div>
+            <div class="disco">
+              <figure data-go="movie-2099"><div class="ph"></div><figcaption>2099: A STRA…</figcaption><div class="year">2024</div></figure>
+              <figure data-go="movie-2099"><div class="ph"></div><figcaption>UNTITLED</figcaption><div class="year">2022</div></figure>
+            </div>
+            <div class="disco-more" data-toast="Этого экрана не было в скриншотах"><svg class="ic"><use href="#i-plus"/></svg></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="person-nolan" data-time="10:43">
+        <div class="navbar">
+          <button data-go="movie-crew"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+            <button data-open="ov-fav-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="scroll">
+          <img class="person-hero" src="assets/nolan-hero.jpg" alt="">
+          <div class="pad" style="padding-top:16px">
+            <h2 class="title">Christopher Nolan</h2>
+            <p class="caption" style="margin-top:8px">[DIRECTING]</p>
+            <p class="person-bio" style="margin-top:12px">Christopher Nolan (born 30 July 1970) is a British and American filmmaker. Known for his Hollywood blockbusters with complex storytelling, Nolan is considered a leading filmmaker of the 21st century.</p>
+            <div class="section-head" style="margin-top:22px"><span class="h2">DISCOGRAPHY (78)</span></div>
+            <div class="disco">
+              <figure data-go="movie-crew"><img src="assets/poster-odyssey.jpg" alt=""><figcaption>THE ODYSSEY</figcaption><div class="year">2026</div></figure>
+              <figure data-go="movie-crew"><img src="assets/poster-making.jpg" alt=""><figcaption>THE ODYSSEY…</figcaption><div class="year">2026</div></figure>
+              <figure data-go="movie-2099"><img src="assets/poster-sinners.jpg" alt=""><figcaption>SINNERS</figcaption><div class="year">2025</div></figure>
+              <figure data-go="movie-2099"><div class="ph"></div><figcaption>OPPENHEIMER</figcaption><div class="year">2023</div></figure>
+              <figure data-go="movie-2099"><div class="ph"></div><figcaption>TENET</figcaption><div class="year">2020</div></figure>
+            </div>
+            <div class="disco-more" data-toast="Этого экрана не было в скриншотах"><svg class="ic"><use href="#i-plus"/></svg></div>
+            <div style="height:20px"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="person-damon" data-time="10:54">
+        <div class="navbar">
+          <button data-go="movie-cast"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+            <button data-open="ov-fav-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="scroll">
+          <img class="person-hero" src="assets/damon.jpg" alt="">
+          <div class="pad" style="padding-top:16px">
+            <h2 class="title">Matt Damon</h2>
+            <p class="caption" style="margin-top:8px">[ACTING]</p>
+            <p class="person-bio" style="margin-top:12px">Matthew Paige Damon (born October 8, 1970) is an American actor, film producer and screenwriter. He is ranked among Forbes' most bankable stars and is one of the highest-grossing act…</p>
+            <div class="section-head" style="margin-top:22px"><span class="h2">DISCOGRAPHY (202)</span></div>
+            <div class="disco">
+              <figure data-go="movie-crew"><img src="assets/poster-odyssey.jpg" alt=""><figcaption>THE ODYSSEY</figcaption><div class="year">2026</div></figure>
+              <figure data-go="movie-2099"><div class="ph"></div><figcaption>UNTITLED DAN…</figcaption><div class="year">2027</div></figure>
+              <figure data-go="movie-2099"><div class="ph"></div><figcaption>THE MARTIAN</figcaption><div class="year">2015</div></figure>
+            </div>
+            <div class="disco-more" data-toast="Этого экрана не было в скриншотах"><svg class="ic"><use href="#i-plus"/></svg></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="person-damon-loading" data-time="10:57">
+        <div class="navbar">
+          <button data-go="movie-cast"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+            <button data-open="ov-fav-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="scroll">
+          <img class="person-hero" src="assets/damon.jpg" alt="">
+          <div class="pad" style="padding-top:16px">
+            <h2 class="title">Matt Damon</h2>
+            <p class="caption" style="margin-top:8px">[ACTING]</p>
+            <div class="section-head" style="margin-top:22px"><span class="h2">DISCOGRAPHY (202)</span></div>
+            <!-- замечание №15: плейсхолдер = фон скелетона, непонятно, грузится или нет -->
+            <div class="disco">
+              <figure data-go="movie-2099"><div class="ph"></div></figure>
+              <figure data-go="movie-2099"><div class="ph"></div></figure>
+              <figure data-go="movie-2099"><div class="ph"></div></figure>
+            </div>
+            <div class="disco-more" data-toast="Этого экрана не было в скриншотах"><svg class="ic"><use href="#i-plus"/></svg></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ 05 ПАПКИ ============================ -->
+
+      <section class="screen" id="folders" data-time="10:59">
+        <div class="profile-strip">
+          <div class="avatar" data-go="profile">R</div>
+          <span class="name">ROBOTCIGAN</span>
+          <button data-open="ov-profile-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+        </div>
+        <div class="pad">
+          <div class="search-field"><input class="search-field__input" type="text" data-search="folders" data-filter="#folders .folder-row" placeholder="FIND FOLDER"><button class="search-field__clear" data-clear><svg class="ic"><use href="#i-close"/></svg></button></div>
+          <div style="margin-top:14px"><button class="btn-filter btn-filter--off" data-toast="Этого экрана не было в скриншотах">FILTER</button></div>
+        </div>
+        <div class="scroll pad">
+          <div class="folder-row" data-go="roster-bjjkkk">
+            <span class="title">Bjjkkk</span>
+            <button data-open="ov-row-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+          <div class="folder-row" data-go="roster">
+            <div>
+              <span class="title">Test</span>
+              <div class="meta"><span class="caption" style="color:var(--text-primary)">[ACTION]</span><span class="caption" style="color:var(--text-primary)">PACKAGING</span></div>
+            </div>
+            <button data-open="ov-row-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <nav class="tabbar">
+          <button data-go="entry"><svg class="ic ic--muted"><use href="#i-search"/></svg><span>SEARCH</span></button>
+          <button data-go="new-folder"><svg class="ic ic--lg ic--muted"><use href="#i-plus"/></svg></button>
+          <button class="is-active"><svg class="ic"><use href="#i-folder"/></svg><span>FOLDERS</span></button>
+        </nav>
+      </section>
+
+      <section class="screen" id="new-folder" data-time="10:37">
+        <div class="navbar">
+          <span class="nav-title px" style="font-family:var(--font-pixel);letter-spacing:.06em;font-size:calc(15px * var(--pixel-scale,1))">NEW FOLDER</span>
+          <button style="background:var(--bg-subtle);padding:8px;margin-left:auto" data-go="folders"><svg class="ic ic--sm"><use href="#i-close"/></svg></button>
+        </div>
+        <div class="pad" style="padding-top:12px">
+          <p class="label">NAME YOUR FOLDER</p>
+          <div class="search-field" style="margin-top:14px">
+            <input class="search-field__input search-field__input--sm" type="text" id="folder-name" value="Test" placeholder="FOLDER NAME">
+            <button class="search-field__clear" data-clear><svg class="ic ic--muted"><use href="#i-close"/></svg></button>
+          </div>
+          <p class="label" style="margin-top:30px">ADD TAGS</p>
+          <div class="search-field" style="margin-top:14px">
+            <input class="search-field__input search-field__input--tag" type="text" id="folder-tag" value="ACTION" placeholder="ADD TAGS">
+            <button id="folder-tag-add"><svg class="ic"><use href="#i-plus"/></svg></button>
+          </div>
+          <div class="chips" id="folder-tags" style="margin-top:12px"></div>
+        </div>
+        <div class="scroll"></div>
+        <div class="pad" style="padding-bottom:10px"><button class="btn btn--primary">CREATE FOLDER</button></div>
+        <div class="keyboard">
+          <div class="kb-suggest"><div>“ACTION”</div><div>ACTIONS</div><div>ACTIONABLE</div></div>
+          <div class="kb-row"><div class="kb-key">Q</div><div class="kb-key">W</div><div class="kb-key">E</div><div class="kb-key">R</div><div class="kb-key">T</div><div class="kb-key">Y</div><div class="kb-key">U</div><div class="kb-key">I</div><div class="kb-key">O</div><div class="kb-key">P</div></div>
+          <div class="kb-row" style="padding-left:16px;padding-right:16px"><div class="kb-key">A</div><div class="kb-key">S</div><div class="kb-key">D</div><div class="kb-key">F</div><div class="kb-key">G</div><div class="kb-key">H</div><div class="kb-key">J</div><div class="kb-key">K</div><div class="kb-key">L</div></div>
+          <div class="kb-row"><div class="kb-key kb-key--dark">⇧</div><div class="kb-key">Z</div><div class="kb-key">X</div><div class="kb-key">C</div><div class="kb-key">V</div><div class="kb-key">B</div><div class="kb-key">N</div><div class="kb-key">M</div><div class="kb-key kb-key--dark">⌫</div></div>
+          <div class="kb-row"><div class="kb-key kb-key--dark" style="flex:1.4;font-size:14px">123</div><div class="kb-key kb-key--dark" style="flex:1">☺</div><div class="kb-key kb-key--wide">space</div><div class="kb-key kb-key--go">done</div></div>
+          <div class="kb-bottom"><span>🌐</span><span>🎤</span></div>
+        </div>
+      </section>
+
+      <!-- ============================ 06 РОСТЕР ============================ -->
+
+      <section class="screen" id="roster" data-time="10:37">
+        <div class="navbar">
+          <button data-go="folders"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+            <button data-open="ov-row-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="tabs-line">
+          <button class="is-active">ROSTER</button>
+          <button data-go="packaging-empty">PACKAGING</button>
+        </div>
+        <div class="pad">
+          <h2 class="title">Test</h2>
+          <p class="caption" style="margin-top:8px">[ACTION]</p>
+        </div>
+        <div class="scroll pad">
+          <div class="dept-head">DIRECTING</div>
+          <div class="row" style="align-items:center" data-go="person-nolan">
+            <img class="row__photo" src="assets/nolan.jpg" alt="">
+            <div class="row__body"><div class="row__name">CHRISTOPHER NOLAN</div><div class="row__tag" style="margin-top:8px">[DIRECTING]</div></div>
+            <div class="row__actions row__actions--stack">
+              <button data-open="ov-row-menu"><svg class="ic ic--muted"><use href="#i-more"/></svg></button>
+              <button data-open="ov-role"><svg class="ic ic--muted"><use href="#i-tag"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <button class="btn btn--outline" data-go="add-people">ADD CONTENT</button>
+          <button data-open="ov-sort-menu"><svg class="ic ic--lg"><use href="#i-sort"/></svg></button>
+        </div>
+      </section>
+
+      <section class="screen" id="roster-bjjkkk" data-time="10:42">
+        <div class="navbar">
+          <button data-go="folders"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+            <button data-open="ov-row-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="tabs-line">
+          <button class="is-active">ROSTER</button>
+          <button data-go="packaging-empty">PACKAGING</button>
+        </div>
+        <div class="pad"><h2 class="title">Bjjkkk</h2></div>
+        <div class="scroll pad">
+          <div class="dept-head">ACTING</div>
+          <div class="row" style="align-items:center" data-go="person-damon">
+            <img class="row__photo" src="assets/holland.jpg" alt="">
+            <div class="row__body"><div class="row__name">TOM HOLLAND</div><div class="row__tag" style="margin-top:8px">[ACTING]</div></div>
+            <div class="row__actions row__actions--stack">
+              <button data-open="ov-row-menu"><svg class="ic ic--muted"><use href="#i-more"/></svg></button>
+              <button data-open="ov-role"><svg class="ic ic--muted"><use href="#i-tag"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <button class="btn btn--outline" data-go="add-people">ADD CONTENT</button>
+          <button data-open="ov-sort-menu"><svg class="ic ic--lg"><use href="#i-sort"/></svg></button>
+        </div>
+      </section>
+
+      <!-- ============================ 07 ADD CONTENT ============================ -->
+
+      <section class="screen" id="add-people" data-time="10:39">
+        <div class="navbar">
+          <span class="nav-title" style="font-family:var(--font-pixel);font-weight:var(--pixel-weight,700);letter-spacing:.06em;font-size:calc(15px * var(--pixel-scale,1))">ADD CONTENT</span>
+          <button style="background:var(--bg-subtle);padding:8px;margin-left:auto" data-go="roster"><svg class="ic ic--sm"><use href="#i-close"/></svg></button>
+        </div>
+        <div class="pad" style="padding-top:10px">
+          <div class="search-field"><input class="search-field__input" type="text" data-search="add-people" data-filter="#add-people .row" value="Tom holl" placeholder="FIND SPECIALIST"><button class="search-field__clear" data-clear><svg class="ic"><use href="#i-close"/></svg></button></div>
+          <div class="chips" style="margin-top:16px;align-items:center">
+            <button class="btn-filter btn-filter--off" data-toast="Этого экрана не было в скриншотах">FILTER</button>
+            <button data-open="ov-sort-menu"><svg class="ic"><use href="#i-sort"/></svg></button>
+          </div>
+        </div>
+        <div class="scroll pad">
+          <div class="section-head"><span class="h2">SPECIALISTS (18)</span><span class="show-all">SHOW ALL →</span></div>
+          <div class="row" data-go="person-damon">
+            <div class="row__photo"></div>
+            <div class="row__body"><div class="row__name">TOM HOLLYMAN</div><div class="row__sub">LORD OF THE FLIES, 1963</div><div class="row__tag">[CAMERA]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+          <div class="row" data-go="person-damon">
+            <img class="row__photo" src="assets/holloway.jpg" alt="">
+            <div class="row__body"><div class="row__name">TOM HOLLOWAY</div><div class="row__sub">TOY STORY, 1995</div><div class="row__tag">[VISUAL EFFECTS]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+          <div class="row" data-go="person-damon">
+            <img class="row__photo" src="assets/holland.jpg" alt="">
+            <div class="row__body"><div class="row__name">TOM HOLLAND</div><div class="row__sub">THE ODYSSEY, 2026</div><div class="row__tag">[ACTING]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="add-movies" data-time="11:01">
+        <div class="navbar">
+          <span class="nav-title" style="font-family:var(--font-pixel);font-weight:var(--pixel-weight,700);letter-spacing:.06em;font-size:calc(15px * var(--pixel-scale,1))">ADD CONTENT</span>
+          <button style="background:var(--bg-subtle);padding:8px;margin-left:auto" data-go="roster"><svg class="ic ic--sm"><use href="#i-close"/></svg></button>
+        </div>
+        <div class="pad" style="padding-top:10px">
+          <div class="search-field"><input class="search-field__input" type="text" data-search="add-movies" data-filter="#add-movies .row" value="Odissey" placeholder="FIND MOVIE"><button class="search-field__clear" data-clear><svg class="ic"><use href="#i-close"/></svg></button></div>
+          <div class="chips" style="margin-top:16px;align-items:center">
+            <button class="btn-filter btn-filter--off" data-toast="Этого экрана не было в скриншотах">FILTER</button>
+            <button data-open="ov-sort-menu"><svg class="ic"><use href="#i-sort"/></svg></button>
+          </div>
+        </div>
+        <div class="scroll pad">
+          <div class="section-head"><span class="h2">SPECIALISTS (1)</span></div>
+          <div class="row" data-go="person-damon">
+            <div class="row__photo"></div>
+            <div class="row__body"><div class="row__name">ODISSEY DIMITRIADI</div><div class="row__sub">ON THE SAME PLANET, 1966</div><div class="row__tag">[ACTING]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+          <div class="section-head"><span class="h2">MOVIES (15)</span><span class="show-all">SHOW ALL →</span></div>
+          <div class="row" data-go="movie-crew">
+            <img class="row__photo" src="assets/poster-odyssey.jpg" alt="">
+            <div class="row__body"><div class="row__name">THE ODYSSEY</div><div class="row__sub">2026</div><div class="row__tag">[ADVENTURE]</div></div>
+            <div class="row__actions"><button data-open="ov-select-folder"><svg class="ic"><use href="#i-plus"/></svg></button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ 08 PACKAGING ============================ -->
+
+      <section class="screen" id="packaging-empty" data-time="10:37">
+        <div class="navbar">
+          <button data-go="folders"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+            <button data-open="ov-row-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="tabs-line">
+          <button data-go="roster">ROSTER</button>
+          <button class="is-active">PACKAGING</button>
+        </div>
+        <div class="empty">
+          <p class="display">PACK IT UP,<br>TOGETHER!</p>
+          <button class="btn" style="background:var(--bg-accent);color:var(--text-on-accent)" data-open="ov-start-packaging">START PACKAGING</button>
+        </div>
+      </section>
+
+      <section class="screen" id="packaging-list" data-time="10:39">
+        <div class="navbar">
+          <button data-go="folders"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+            <button data-open="ov-row-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="tabs-line">
+          <button data-go="roster">ROSTER</button>
+          <button class="is-active">PACKAGING</button>
+        </div>
+        <div class="pad">
+          <h2 class="title">Test</h2>
+          <div class="pack-head">
+            <span class="pack-chip" id="pack-participants" style="color:var(--text-primary)">[1 PARTICIPANT]</span>
+            <button class="pack-chip danger" id="pack-close">[CLOSE PACKAGING]</button>
+          </div>
+          <div class="goal">
+            <div style="flex:1;min-width:0">
+              <div class="caption" style="font-size:var(--fs-body)">GOAL</div>
+              <textarea id="goal-text" class="plan" rows="1" placeholder="SET UP YOUR PLAN" maxlength="1000"></textarea>
+            </div>
+            <button id="goal-edit"><svg class="ic"><use href="#i-pencil"/></svg></button>
+          </div>
+        </div>
+        <div class="tabs-line" style="padding-top:18px">
+          <button class="is-active">MY LIST</button>
+          <button data-go="packaging-aggregate">AGGREGATE</button>
+        </div>
+        <div class="scroll pad">
+          <button class="link-row" data-go="add-people"><svg class="ic"><use href="#i-plus"/></svg>ADD NEW SPECIALIST</button>
+          <button class="link-row" data-go="folders"><svg class="ic"><use href="#i-import"/></svg>ADD FROM FOLDER</button>
+          <div class="dept-head">ACTING</div>
+          <div class="cand-row" data-go="person-damon">
+            <img class="row__photo row__photo--xs" src="assets/holland.jpg" alt="">
+            <div class="cand-row__body">
+              <div class="row__name">TOM HOLLAND</div>
+              <button class="cand-row__comment" data-open="ov-reason"><svg class="ic ic--sm ic--muted"><use href="#i-pencil"/></svg>ADD COMMENT</button>
+            </div>
+            <button data-open="ov-role"><svg class="ic ic--muted"><use href="#i-tag"/></svg></button>
+            <button class="drag-handle" draggable="true"><svg class="ic ic--muted"><use href="#i-drag"/></svg></button>
+          </div>
+          <div class="dept-head">DIRECTING</div>
+          <div class="cand-row" data-go="person-nolan">
+            <img class="row__photo row__photo--xs" src="assets/nolan.jpg" alt="">
+            <div class="cand-row__body">
+              <div class="row__name">CHRISTOPHER NOLAN</div>
+              <button class="cand-row__comment" data-open="ov-reason"><svg class="ic ic--sm ic--muted"><use href="#i-pencil"/></svg>ADD COMMENT</button>
+            </div>
+            <button data-open="ov-role"><svg class="ic ic--muted"><use href="#i-tag"/></svg></button>
+            <button class="drag-handle" draggable="true"><svg class="ic ic--muted"><use href="#i-drag"/></svg></button>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="screen" id="packaging-aggregate" data-time="10:41">
+        <div class="navbar">
+          <button data-go="folders"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+            <button data-open="ov-row-menu"><svg class="ic"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="tabs-line">
+          <button data-go="roster">ROSTER</button>
+          <button class="is-active">PACKAGING</button>
+        </div>
+        <div class="pad">
+          <h2 class="title">Test</h2>
+          <div class="pack-head">
+            <span class="pack-chip" style="color:var(--text-primary)">[5 PARTICIPANTS]</span>
+            <span class="pack-chip danger">[CLOSE PACKAGING]</span>
+          </div>
+        </div>
+        <div class="tabs-line" style="padding-top:18px">
+          <button data-go="packaging-list">MY LIST</button>
+          <button class="is-active">AGGREGATE</button>
+        </div>
+        <div class="pad" style="padding-bottom:4px">
+          <div class="chips">
+            <span class="chip chip--outline is-on">[TOP RANKING]</span>
+            <span class="chip chip--outline">ARSENIY</span>
+            <span class="chip chip--outline">SERGEY</span>
+            <span class="chip chip--outline">MASHA</span>
+            <span class="chip chip--outline">LEV</span>
+            <span class="chip chip--outline">DANIIL</span>
+          </div>
+        </div>
+        <div class="scroll pad">
+          <div class="dept-head">ACTING</div>
+          <div class="agg-row">
+            <div class="agg-row__pos">1</div>
+            <img class="agg-row__photo" src="assets/tania.jpg" alt="">
+            <div class="agg-row__body">
+              <div class="row__name">TANIA NOLAN</div><span class="row__role">LEAD</span>
+              <div class="spread"><div class="spread__line"></div><span class="tick is-mine" style="left:0.0%"></span><span class="tick" style="left:0.0%"></span><span class="tick" style="left:0.0%"></span><span class="tick" style="left:0.0%"></span><span class="tick" style="left:25.0%"></span></div>
+              <div class="agg-row__meta">
+                <span class="agree">СОГЛАСИЕ</span>
+                <span>ПРОГОЛОСОВАЛИ 5 ИЗ 5</span>
+                <span class="agg-row__note"><svg class="ic ic--sm"><use href="#i-note"/></svg>2</span>
+              </div>
+            </div>
+          </div>
+          <div class="agg-row">
+            <div class="agg-row__pos">2</div>
+            <img class="agg-row__photo" src="assets/holland.jpg" alt="">
+            <div class="agg-row__body">
+              <div class="row__name">TOM HOLLAND</div>
+              <div class="spread"><div class="spread__line"></div><span class="tick is-mine" style="left:25.0%"></span><span class="tick" style="left:25.0%"></span><span class="tick" style="left:25.0%"></span><span class="tick" style="left:25.0%"></span><span class="tick" style="left:50.0%"></span></div>
+              <div class="agg-row__meta">
+                <span class="agree">СОГЛАСИЕ</span>
+                <span>ПРОГОЛОСОВАЛИ 5 ИЗ 5</span>
+                <span class="agg-row__note"><svg class="ic ic--sm"><use href="#i-note"/></svg>3</span>
+              </div>
+            </div>
+          </div>
+          <div class="agg-row">
+            <div class="agg-row__pos">3</div>
+            <div class="agg-row__photo"></div>
+            <div class="agg-row__body">
+              <div class="row__name">ANNE HATHAWAY</div>
+              <div class="spread"><div class="spread__line"></div><span class="tick is-mine" style="left:0.0%"></span><span class="tick" style="left:0.0%"></span><span class="tick" style="left:50.0%"></span><span class="tick" style="left:75.0%"></span><span class="tick" style="left:75.0%"></span></div>
+              <div class="agg-row__meta">
+                <span class="argue">СПОР</span>
+                <span>ПРОГОЛОСОВАЛИ 5 ИЗ 5</span>
+                <span class="agg-row__note"><svg class="ic ic--sm"><use href="#i-note"/></svg>5</span>
+              </div>
+            </div>
+          </div>
+          <div class="agg-row">
+            <div class="agg-row__pos">4</div>
+            <img class="agg-row__photo" src="assets/damon.jpg" alt="">
+            <div class="agg-row__body">
+              <div class="row__name">MATT DAMON</div>
+              <div class="spread"><div class="spread__line"></div><span class="tick is-mine" style="left:0.0%"></span></div>
+              <div class="agg-row__meta">
+                <span class="argue">МАЛО ГОЛОСОВ</span>
+                <span>ПРОГОЛОСОВАЛИ 1 ИЗ 5</span>
+                <span class="agg-row__note"><svg class="ic ic--sm"><use href="#i-note"/></svg>1</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dept-head">DIRECTING</div>
+          <div class="agg-row">
+            <div class="agg-row__pos">1</div>
+            <img class="agg-row__photo" src="assets/nolan.jpg" alt="">
+            <div class="agg-row__body">
+              <div class="row__name">CHRISTOPHER NOLAN</div><span class="row__role">DIRECTOR</span>
+              <div class="spread"><div class="spread__line"></div><span class="tick is-mine" style="left:0.0%"></span><span class="tick" style="left:0.0%"></span><span class="tick" style="left:0.0%"></span><span class="tick" style="left:0.0%"></span><span class="tick" style="left:25.0%"></span></div>
+              <div class="agg-row__meta">
+                <span class="agree">СОГЛАСИЕ</span>
+                <span>ПРОГОЛОСОВАЛИ 5 ИЗ 5</span>
+                <span class="agg-row__note"><svg class="ic ic--sm"><use href="#i-note"/></svg>4</span>
+              </div>
+            </div>
+          </div>
+          <div class="agg-row">
+            <div class="agg-row__pos">2</div>
+            <div class="agg-row__photo"></div>
+            <div class="agg-row__body">
+              <div class="row__name">MARK-MASON ROBLEDO</div>
+              <div class="spread"><div class="spread__line"></div><span class="tick is-mine" style="left:25.0%"></span><span class="tick" style="left:25.0%"></span><span class="tick" style="left:25.0%"></span><span class="tick" style="left:25.0%"></span><span class="tick" style="left:0.0%"></span></div>
+              <div class="agg-row__meta">
+                <span class="agree">СОГЛАСИЕ</span>
+                <span>ПРОГОЛОСОВАЛИ 5 ИЗ 5</span>
+                <span class="agg-row__note"><svg class="ic ic--sm"><use href="#i-note"/></svg>1</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dept-head dept-head--muted">НИКТО НЕ ГОЛОСОВАЛ</div>
+          <div class="agg-row is-muted">
+            <div class="agg-row__pos">—</div>
+            <img class="agg-row__photo" src="assets/otero.jpg" alt="">
+            <div class="agg-row__body">
+              <div class="row__name">NILO OTERO</div>
+              <div class="agg-row__meta"><span>ТЫ ЕЩЁ НЕ РАНЖИРОВАЛ — ГОЛОСА СКРЫТЫ</span></div>
+            </div>
+          </div>
+          <div class="dept-head dept-head--muted">PARKED</div>
+          <div class="agg-row is-muted">
+            <div class="agg-row__pos">—</div>
+            <img class="agg-row__photo" src="assets/rory.jpg" alt="">
+            <div class="agg-row__body">
+              <div class="row__name">RORY NOLAN</div>
+              <div class="agg-row__meta"><span>ACTING · PARKED</span><span class="argue">TIME TO FOLLOW UP</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="screen" id="aggregate-variants" data-time="10:41">
+        <div class="navbar">
+          <button data-go="packaging-aggregate"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <span class="nav-title px" style="font-family:var(--font-pixel);letter-spacing:.06em;font-size:calc(15px * var(--pixel-scale,1))">РАЗБРОС ГОЛОСОВ</span>
+        </div>
+        <div class="pad" style="padding-top:10px">
+          <div class="chips" id="var-pick"></div>
+          <p class="var-note" id="var-note"></p>
+        </div>
+        <div class="scroll pad" id="var-list"></div>
+      </section>
+
+
+      <section class="screen" id="aggregate-concepts" data-time="10:41">
+        <div class="navbar">
+          <button data-go="packaging-list"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <div class="nav-actions" style="margin-left:auto">
+            <button data-open="ov-share"><svg class="ic"><use href="#i-share"/></svg></button>
+          </div>
+        </div>
+        <div class="pad" style="padding-bottom:6px">
+          <h2 class="title">Test</h2>
+          <div class="pack-head"><span class="pack-chip" style="color:var(--text-primary)">[5 PARTICIPANTS]</span></div>
+        </div>
+        <div class="pad" style="padding-top:12px;padding-bottom:4px">
+          <div class="chips" id="con-pick"></div>
+          <p class="var-note" id="con-note"></p>
+        </div>
+        <div class="scroll" id="con-body"></div>
+      </section>
+
+      <!-- ============================ 09 ЗАМЕТКИ ============================ -->
+
+      <section class="screen" id="notes" data-time="10:43">
+        <div class="navbar navbar--bordered" style="height:62px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <img class="avatar" src="assets/nolan.jpg" alt="" style="object-fit:cover">
+            <div>
+              <div style="font-size:17px;font-weight:600;color:var(--text-primary)">Christopher Nolan</div>
+              <div class="mono" style="font-size:13px;letter-spacing:.12em;color:var(--text-muted)">DIRECTING</div>
+            </div>
+          </div>
+          <button data-go="person-nolan"><svg class="ic ic--lg"><use href="#i-close"/></svg></button>
+        </div>
+        <div class="scroll">
+          <div class="note-item" data-go="note-editor">
+            <div class="bar"></div>
+            <div class="body">
+              <div class="text">Dikdjdbdbdbdj my note</div>
+              <div class="time">10:43</div>
+            </div>
+            <button data-open="ov-fav-menu"><svg class="ic ic--sm ic--muted"><use href="#i-more"/></svg></button>
+          </div>
+        </div>
+        <div class="footer-bar footer-bar--single">
+          <button class="btn btn--outline" style="border-color:var(--border-default)" data-go="note-editor">ADD NOTE</button>
+        </div>
+      </section>
+
+      <section class="screen" id="note-editor" data-time="10:43">
+        <div class="navbar navbar--bordered">
+          <button class="px" style="font-size:calc(var(--fs-body) * var(--pixel-scale,1));letter-spacing:.04em" data-go="notes">CANCEL</button>
+          <span style="font-size:17px;font-weight:600;color:var(--text-primary);position:absolute;left:50%;transform:translateX(-50%)">Christopher Nolan</span>
+          <button class="px" data-go="notes" style="font-size:calc(var(--fs-body) * var(--pixel-scale,1));letter-spacing:.04em;color:var(--text-disabled)">SAVE</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:12px var(--gutter)">
+          <svg class="ic ic--sm" style="color:var(--text-muted)"><use href="#i-at"/></svg>
+          <span style="font-size:15px;color:var(--text-muted)">Type @ to mention a specialist</span>
+        </div>
+        <div class="note-editor">
+          <div class="bar"></div>
+          <textarea id="note-text" placeholder="Write your note..."></textarea>
+        </div>
+        <div class="keyboard">
+          <div class="kb-suggest"><div>I</div><div>The</div><div>I’m</div></div>
+          <div class="kb-row"><div class="kb-key">Q</div><div class="kb-key">W</div><div class="kb-key">E</div><div class="kb-key">R</div><div class="kb-key">T</div><div class="kb-key">Y</div><div class="kb-key">U</div><div class="kb-key">I</div><div class="kb-key">O</div><div class="kb-key">P</div></div>
+          <div class="kb-row" style="padding-left:16px;padding-right:16px"><div class="kb-key">A</div><div class="kb-key">S</div><div class="kb-key">D</div><div class="kb-key">F</div><div class="kb-key">G</div><div class="kb-key">H</div><div class="kb-key">J</div><div class="kb-key">K</div><div class="kb-key">L</div></div>
+          <div class="kb-row"><div class="kb-key kb-key--dark">⇧</div><div class="kb-key">Z</div><div class="kb-key">X</div><div class="kb-key">C</div><div class="kb-key">V</div><div class="kb-key">B</div><div class="kb-key">N</div><div class="kb-key">M</div><div class="kb-key kb-key--dark">⌫</div></div>
+          <div class="kb-row"><div class="kb-key kb-key--dark" style="flex:1.4;font-size:14px">123</div><div class="kb-key kb-key--dark" style="flex:1">☺</div><div class="kb-key kb-key--wide">space</div><div class="kb-key kb-key--dark" style="flex:2;font-size:15px">return</div></div>
+          <div class="kb-bottom"><span>🌐</span><span>🎤</span></div>
+        </div>
+      </section>
+
+      <!-- ============================ 10 ПРОФИЛЬ ============================ -->
+
+      <section class="screen" id="profile" data-time="11:02">
+        <div class="navbar">
+          <button data-go="folders"><svg class="ic ic--lg"><use href="#i-chevron-left"/></svg></button>
+          <button data-open="ov-profile-menu" style="margin-left:auto"><svg class="ic"><use href="#i-more"/></svg></button>
+        </div>
+        <div class="scroll">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 0 10px">
+            <div class="avatar avatar--lg">R</div>
+            <h2 class="title">robotcigan</h2>
+            <p style="font-size:15px;color:var(--text-muted)">robotcigan@gmail.com</p>
+            <button class="btn btn--sf" style="background:var(--bg-subtle);color:var(--text-primary);padding:10px 26px;margin-top:4px" data-toast="Этого экрана не было в скриншотах">Edit Profile</button>
+          </div>
+          <div class="pad" style="margin-top:14px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span class="h2" style="letter-spacing:.06em">FAVORITES</span>
+              <button class="btn-filter btn-filter--square" data-toast="Этого экрана не было в скриншотах"><svg class="ic ic--sm"><use href="#i-filter"/></svg></button>
+            </div>
+            <div class="chips" style="margin-top:14px">
+              <span class="chip chip--soft">Acting</span>
+              <span class="chip chip--soft">Camera</span>
+              <span class="chip chip--soft">Directing</span>
+            </div>
+            <div style="border-bottom:1px solid var(--border-default);margin-top:14px"></div>
+            <div class="row" data-go="person-damon">
+              <img class="row__photo" src="assets/damon.jpg" alt="">
+              <div class="row__body"><div class="row__name">MATT DAMON</div><div class="row__sub" style="font-family:var(--font-mono)">Untitled Daniels Event Film, 2027</div><div class="row__tag">[ACTING]</div></div>
+              <div class="row__actions row__actions--stack"><button data-open="ov-fav-menu"><svg class="ic ic--sm ic--muted"><use href="#i-more"/></svg></button></div>
+            </div>
+            <div class="row" data-go="person-nolan">
+              <img class="row__photo" src="assets/nolan.jpg" alt="">
+              <div class="row__body"><div class="row__name">CHRISTOPHER NOLAN</div><div class="row__sub" style="font-family:var(--font-mono)">The Odyssey, 2026</div><div class="row__tag">[DIRECTING]</div></div>
+              <div class="row__actions row__actions--stack"><button data-open="ov-fav-menu"><svg class="ic ic--sm ic--muted"><use href="#i-more"/></svg></button></div>
+            </div>
+            <div class="row" data-go="person-damon">
+              <img class="row__photo" src="assets/hoyte.jpg" alt="">
+              <div class="row__body"><div class="row__name">HOYTE VAN HOYTEMA</div><div class="row__sub" style="font-family:var(--font-mono)">The Odyssey, 2026</div><div class="row__tag">[CAMERA]</div></div>
+              <div class="row__actions row__actions--stack"><button data-open="ov-fav-menu"><svg class="ic ic--sm ic--muted"><use href="#i-more"/></svg></button></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bar" style="background:var(--bg-subtle)">
+          <button class="btn--sf" style="color:var(--text-danger);font-size:17px" data-toast="Этого экрана не было в скриншотах">Delete Account</button>
+        </div>
+      </section>
+
+      <!-- ============================ ОВЕРЛЕИ ============================ -->
+
+      <div class="overlay" id="ov-select-folder">
+        <div class="overlay__scrim" data-close></div>
+        <div class="sheet">
+          <div class="sheet__grabber"></div>
+          <div class="sheet__label">SELECT FOLDER</div>
+          <div class="sheet-row"><span class="px">BJJKKK</span><span class="checkbox"></span></div>
+          <div class="sheet-row"><span><span class="px">TEST</span> <span class="badge-pack">Packaging</span></span><span class="checkbox"></span></div>
+          <div class="sheet-row" data-close data-go="new-folder"><span style="display:flex;align-items:center;gap:10px"><svg class="ic"><use href="#i-plus"/></svg><span class="px">NEW FOLDER</span></span></div>
+          <div class="sheet__footer"><button class="btn btn--primary btn--disabled" id="sheet-add">ADD</button></div>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-select-folder-empty">
+        <div class="overlay__scrim" data-close></div>
+        <div class="sheet">
+          <div class="sheet__grabber"></div>
+          <div class="sheet__label">SELECT FOLDER</div>
+          <div class="sheet-row" data-close data-go="new-folder"><span style="display:flex;align-items:center;gap:10px"><svg class="ic"><use href="#i-plus"/></svg><span class="px">NEW FOLDER</span></span></div>
+          <div class="sheet__footer"><button class="btn btn--primary btn--disabled" data-close>ADD</button></div>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-role">
+        <div class="overlay__scrim" data-close></div>
+        <div class="sheet" style="padding-bottom:20px">
+          <div class="sheet__grabber"></div>
+          <div style="text-align:center">
+            <div id="role-who" style="font-size:19px;font-weight:600;color:var(--text-primary)">Christopher Nolan</div>
+            <div style="font-size:15px;color:var(--text-muted);margin-top:2px">Role</div>
+          </div>
+          <div id="role-list" style="margin-top:10px"></div>
+          <div style="display:flex;gap:10px;margin-top:16px">
+            <input id="role-new" type="text" placeholder="New role"
+                   style="flex:1;border:1px solid var(--border-default);padding:13px 14px;font-size:17px;color:var(--text-primary);outline:none;background:none">
+            <button id="role-add" style="border:1px solid var(--border-default);padding:13px 20px;font-size:17px;color:var(--text-primary)">Add</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-row-menu">
+        <div class="overlay__scrim" data-close></div>
+        <div class="menu" style="right:14px;top:310px">
+          <button data-close><svg class="ic ic--sm"><use href="#i-copy"/></svg>DUPLICATE TO</button>
+          <button data-go="notes" data-close><svg class="ic ic--sm"><use href="#i-note"/></svg>ADD NOTE</button>
+          <button data-close data-toast="Added to Favorites"><svg class="ic ic--sm"><use href="#i-heart"/></svg>ADD TO FAVORITES</button>
+          <button data-close data-open="ov-share"><svg class="ic ic--sm"><use href="#i-share"/></svg>SHARE</button>
+          <button class="is-danger" data-close><svg class="ic ic--sm ic--danger"><use href="#i-trash"/></svg>DELETE</button>
+        </div>
+      </div>
+
+      <!-- замечание №7: выпадающее меню с одним пунктом -->
+      <div class="overlay" id="ov-fav-menu">
+        <div class="overlay__scrim" data-close></div>
+        <div class="menu" style="right:14px;top:110px;min-width:224px">
+          <button data-close data-toast="Added to Favorites"><svg class="ic ic--sm"><use href="#i-heart"/></svg>ADD TO FAVORITES</button>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-profile-menu">
+        <div class="overlay__scrim" data-close></div>
+        <div class="menu" style="right:14px;top:110px;min-width:180px">
+          <button data-close><svg class="ic ic--sm"><use href="#i-note"/></svg>ABOUT APP</button>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-sort-menu">
+        <div class="overlay__scrim" data-close></div>
+        <div class="menu" style="right:14px;bottom:96px;min-width:250px">
+          <button data-close data-sort="role-az">ROLES BY A-Z</button>
+          <button data-close data-sort="role-za">ROLES BY Z-A</button>
+          <button data-close data-sort="count-desc">BY COUNT (FROM MORE)</button>
+          <button data-close data-sort="count-asc">BY COUNT (FROM LESS)</button>
+          <button data-close data-sort="recent">BY RECENT UPDATE</button>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-start-packaging">
+        <div class="overlay__scrim" data-close></div>
+        <div class="dialog">
+          <div class="dialog__label">START PACKAGING</div>
+          <div class="dialog__opt">
+            <div class="head"><span class="px" style="font-size:calc(var(--fs-h2) * var(--pixel-scale,1));letter-spacing:.05em">IMPORT ROSTER</span><span class="checkbox is-on"></span></div>
+            <div class="hint">MERGES CURRENT ROSTER INTO PACKAGING</div>
+          </div>
+          <div class="dialog__opt">
+            <div class="head"><span class="px" style="font-size:calc(var(--fs-h2) * var(--pixel-scale,1));letter-spacing:.05em">INVITE ACCESS</span><span class="checkbox"></span></div>
+            <div class="hint">LETS PARTICIPANTS ADD OTHERS</div>
+          </div>
+          <div class="dialog__actions">
+            <button class="btn btn--outline" data-close>CANCEL</button>
+            <button class="btn" id="pack-start" style="background:var(--bg-accent);color:var(--text-on-accent)">START</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-reason">
+        <div class="overlay__scrim" data-close></div>
+        <div class="dialog dialog--sf">
+          <h3>Reason</h3>
+          <p>Why you ranked Tom Holland like this — visible to all participants.</p>
+          <textarea id="reason-text" placeholder="Напиши причину"></textarea>
+          <div class="dialog__actions">
+            <button class="btn btn--sf" style="background:var(--bg-subtle);color:var(--text-primary)" data-close>Cancel</button>
+            <button class="btn btn--sf" id="reason-save" style="background:var(--bg-accent);color:var(--text-on-accent)">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-reason-filled">
+        <div class="overlay__scrim" data-close></div>
+        <div class="dialog dialog--sf">
+          <h3>Reason</h3>
+          <p>Why you ranked Tom Holland like this — visible to all participants.</p>
+          <div class="textarea">Like his acting<span class="caret" style="height:18px"></span></div>
+          <div class="dialog__actions">
+            <button class="btn btn--sf" style="background:var(--bg-subtle);color:var(--text-primary)" data-close>Cancel</button>
+            <button class="btn btn--sf" style="background:var(--bg-accent);color:var(--text-on-accent)" data-close>Save</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- замечание №10: шеринг спрашивает yes/no вместо системного шита -->
+      <div class="overlay" id="ov-share">
+        <div class="overlay__scrim" data-close></div>
+        <div class="ios-alert">
+          <div class="body">
+            <h3>Share Christopher Nolan?</h3>
+            <p>Include your notes?</p>
+          </div>
+          <div class="actions"><button data-close>No</button><button data-close>Yes</button></div>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-push">
+        <div class="overlay__scrim" data-close></div>
+        <div class="ios-alert">
+          <div class="body">
+            <h3>«Film» запрашивает разрешение на отправку уведомлений</h3>
+            <p>Уведомления могут включать напоминания, звуки и значки.</p>
+          </div>
+          <div class="actions"><button data-close>Запретить</button><button data-close>Разрешить</button></div>
+        </div>
+      </div>
+
+      <div class="overlay" id="ov-close-pack">
+        <div class="overlay__scrim" data-close></div>
+        <div class="ios-alert">
+          <div class="body">
+            <h3>Close Packaging?</h3>
+            <p>Participants will see the process as closed and read-only.</p>
+          </div>
+          <div class="actions"><button data-close>Cancel</button><button id="pack-close-confirm">Close</button></div>
+        </div>
+      </div>
+
+      <div class="toast" id="toast">Added to Favorites</div>
+      <div class="home-indicator"></div>
+
+    </div>
+  </main>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-at" viewBox="0 0 24 24" fill="none">
+    <path d="M15.5 12C15.5 13.933 13.933 15.5 12 15.5C10.067 15.5 8.5 13.933 8.5 12C8.5 10.067 10.067 8.5 12 8.5C13.933 8.5 15.5 10.067 15.5 12Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M15.5 12V13.5C15.5 14.163 15.7634 14.7989 16.2322 15.2678C16.7011 15.7366 17.337 16 18 16C18.6631 16 19.2989 15.7366 19.7678 15.2678C20.2366 14.7989 20.5 14.163 20.5 13.5V12C20.5 10.0852 19.8535 8.22652 18.6652 6.72505C17.4769 5.22358 15.8165 4.16732 13.9529 3.72739C12.0893 3.28746 10.1318 3.48964 8.39751 4.30118C6.6632 5.11271 5.2537 6.48605 4.39738 8.19869C3.54106 9.91133 3.28809 11.8629 3.67945 13.7373C4.07081 15.6117 5.08357 17.299 6.55366 18.5259C8.02374 19.7528 9.86502 20.4474 11.7792 20.4971C13.6933 20.5469 15.5682 19.9489 17.1 18.8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none">
+    <path d="M5 12.5L9.5 17L19 7.5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none">
+    <path d="M15 5L8 12L15 19" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none">
+    <path d="M6 6L12 12M12 12L18 18M12 12L18 6M12 12L6 18" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none">
+    <path d="M9 8H19C19.5523 8 20 8.44772 20 9V19C20 19.5523 19.5523 20 19 20H9C8.44772 20 8 19.5523 8 19V9C8 8.44772 8.44772 8 9 8Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M16 8V5C16 4.73478 15.8946 4.48043 15.7071 4.29289C15.5196 4.10536 15.2652 4 15 4H5C4.73478 4 4.48043 4.10536 4.29289 4.29289C4.10536 4.48043 4 4.73478 4 5V15C4 15.2652 4.10536 15.5196 4.29289 15.7071C4.48043 15.8946 4.73478 16 5 16H8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24" fill="none">
+    <path d="M9.0001 7.39961C9.7733 7.39961 10.4001 6.77281 10.4001 5.99961C10.4001 5.22641 9.7733 4.59961 9.0001 4.59961C8.2269 4.59961 7.6001 5.22641 7.6001 5.99961C7.6001 6.77281 8.2269 7.39961 9.0001 7.39961Z" fill="currentColor"/>
+    <path d="M15.0001 7.39961C15.7733 7.39961 16.4001 6.77281 16.4001 5.99961C16.4001 5.22641 15.7733 4.59961 15.0001 4.59961C14.2269 4.59961 13.6001 5.22641 13.6001 5.99961C13.6001 6.77281 14.2269 7.39961 15.0001 7.39961Z" fill="currentColor"/>
+    <path d="M9.0001 13.3996C9.7733 13.3996 10.4001 12.7728 10.4001 11.9996C10.4001 11.2264 9.7733 10.5996 9.0001 10.5996C8.2269 10.5996 7.6001 11.2264 7.6001 11.9996C7.6001 12.7728 8.2269 13.3996 9.0001 13.3996Z" fill="currentColor"/>
+    <path d="M15.0001 13.3996C15.7733 13.3996 16.4001 12.7728 16.4001 11.9996C16.4001 11.2264 15.7733 10.5996 15.0001 10.5996C14.2269 10.5996 13.6001 11.2264 13.6001 11.9996C13.6001 12.7728 14.2269 13.3996 15.0001 13.3996Z" fill="currentColor"/>
+    <path d="M9.0001 19.3996C9.7733 19.3996 10.4001 18.7728 10.4001 17.9996C10.4001 17.2264 9.7733 16.5996 9.0001 16.5996C8.2269 16.5996 7.6001 17.2264 7.6001 17.9996C7.6001 18.7728 8.2269 19.3996 9.0001 19.3996Z" fill="currentColor"/>
+    <path d="M15.0001 19.3996C15.7733 19.3996 16.4001 18.7728 16.4001 17.9996C16.4001 17.2264 15.7733 16.5996 15.0001 16.5996C14.2269 16.5996 13.6001 17.2264 13.6001 17.9996C13.6001 18.7728 14.2269 19.3996 15.0001 19.3996Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none">
+    <path d="M2.5 12C2.5 12 6 5.5 12 5.5C18 5.5 21.5 12 21.5 12C21.5 12 18 18.5 12 18.5C6 18.5 2.5 12 2.5 12Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24" fill="none">
+    <path d="M4 5H20L14 12.5V19L10 17V12.5L4 5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24" fill="none">
+    <path d="M3 7C3 6.73478 3.10536 6.48043 3.29289 6.29289C3.48043 6.10536 3.73478 6 4 6H9L11 8H20C20.2652 8 20.5196 8.10536 20.7071 8.29289C20.8946 8.48043 21 8.73478 21 9V18C21 18.2652 20.8946 18.5196 20.7071 18.7071C20.5196 18.8946 20.2652 19 20 19H4C3.73478 19 3.48043 18.8946 3.29289 18.7071C3.10536 18.5196 3 18.2652 3 18V7Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none">
+    <path d="M12 19.9999C12 19.9999 4.5 15.3999 4.5 9.99987C4.51439 9.1358 4.78881 8.29612 5.28746 7.59031C5.78611 6.8845 6.48586 6.34532 7.29546 6.04307C8.10507 5.74081 8.98696 5.68952 9.82615 5.89587C10.6653 6.10221 11.4229 6.55663 12 7.19987C12.5771 6.55663 13.3347 6.10221 14.1739 5.89587C15.013 5.68952 15.8949 5.74081 16.7045 6.04307C17.5141 6.34532 18.2139 6.8845 18.7125 7.59031C19.2112 8.29612 19.4856 9.1358 19.5 9.99987C19.5 15.3999 12 19.9999 12 19.9999Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-import" viewBox="0 0 24 24" fill="none">
+    <path d="M4 9V5C4 4.73478 4.10536 4.48043 4.29289 4.29289C4.48043 4.10536 4.73478 4 5 4H19C19.2652 4 19.5196 4.10536 19.7071 4.29289C19.8946 4.48043 20 4.73478 20 5V19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H5C4.73478 20 4.48043 19.8946 4.29289 19.7071C4.10536 19.5196 4 19.2652 4 19V15M3 12H13M10 15L13 12L10 9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-more" viewBox="0 0 24 24" fill="none">
+    <path d="M4.9999 13.6004C5.88356 13.6004 6.5999 12.884 6.5999 12.0004C6.5999 11.1167 5.88356 10.4004 4.9999 10.4004C4.11625 10.4004 3.3999 11.1167 3.3999 12.0004C3.3999 12.884 4.11625 13.6004 4.9999 13.6004Z" fill="currentColor"/>
+    <path d="M11.9999 13.6004C12.8836 13.6004 13.5999 12.884 13.5999 12.0004C13.5999 11.1167 12.8836 10.4004 11.9999 10.4004C11.1162 10.4004 10.3999 11.1167 10.3999 12.0004C10.3999 12.884 11.1162 13.6004 11.9999 13.6004Z" fill="currentColor"/>
+    <path d="M18.9999 13.6004C19.8836 13.6004 20.5999 12.884 20.5999 12.0004C20.5999 11.1167 19.8836 10.4004 18.9999 10.4004C18.1162 10.4004 17.3999 11.1167 17.3999 12.0004C17.3999 12.884 18.1162 13.6004 18.9999 13.6004Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="i-note" viewBox="0 0 24 24" fill="none">
+    <path d="M4 5H20V16H9L4 20V5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24" fill="none">
+    <path d="M4 20L5 16L16 5L19 8L8 19L4 20Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none">
+    <path d="M12 5V12M12 12V19M12 12H5M12 12H19" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none">
+    <path d="M16.5 10.5C16.5 13.8137 13.8137 16.5 10.5 16.5C7.18629 16.5 4.5 13.8137 4.5 10.5C4.5 7.18629 7.18629 4.5 10.5 4.5C13.8137 4.5 16.5 7.18629 16.5 10.5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M15 15L20 20" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-share" viewBox="0 0 24 24" fill="none">
+    <path d="M20.5 5.5C20.5 6.88071 19.3807 8 18 8C16.6193 8 15.5 6.88071 15.5 5.5C15.5 4.11929 16.6193 3 18 3C19.3807 3 20.5 4.11929 20.5 5.5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M8.5 12C8.5 13.3807 7.38071 14.5 6 14.5C4.61929 14.5 3.5 13.3807 3.5 12C3.5 10.6193 4.61929 9.5 6 9.5C7.38071 9.5 8.5 10.6193 8.5 12Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M20.5 18.5C20.5 19.8807 19.3807 21 18 21C16.6193 21 15.5 19.8807 15.5 18.5C15.5 17.1193 16.6193 16 18 16C19.3807 16 20.5 17.1193 20.5 18.5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M8.2002 10.8002L15.8002 6.7002M8.2002 13.2002L15.8002 17.3002" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-sort" viewBox="0 0 24 24" fill="none">
+    <path d="M8 4V20M12 8L8 4L4 8M16 20V4M20 16L16 20L12 16" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24" fill="none">
+    <path d="M3.5 12.5V4.5C3.5 4.23478 3.60536 3.98043 3.79289 3.79289C3.98043 3.60536 4.23478 3.5 4.5 3.5H12.5L20.5 11.5L11.5 20.5L3.5 12.5Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+    <path d="M9.4001 7.99961C9.4001 8.77281 8.7733 9.39961 8.0001 9.39961C7.2269 9.39961 6.6001 8.77281 6.6001 7.99961C6.6001 7.22641 7.2269 6.59961 8.0001 6.59961C8.7733 6.59961 9.4001 7.22641 9.4001 7.99961Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24" fill="none">
+    <path d="M4 7H6M6 7H9M6 7L7 20H17L18 7M9 7H15M9 7V4H15V7M15 7H18M18 7H20M10 11V17M14 11V17" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"/>
+  </symbol>
+</defs></svg>
+
+<script src="replica.js"></script>
+</body>
+</html>
