@@ -977,8 +977,6 @@ button, .btn-reset { font: inherit; color: inherit; background: none; border: 0;
   padding: calc(var(--statusbar-h) + 88px - 36px * var(--p)) 16px calc(24px - 8px * var(--p));
   margin-top: calc(-1 * var(--statusbar-h));
   display: flex; flex-direction: column; align-items: flex-start;
-  /* короткий переход, чтобы шаг колеса не выглядел рывком */
-  transition: padding .14s linear;
 }
 .phead__goal {
   display: block; width: 100%; text-align: left;
@@ -988,14 +986,12 @@ button, .btn-reset { font: inherit; color: inherit; background: none; border: 0;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   line-height: calc(16px - 16px * var(--p));
   opacity: calc(.5 - .5 * var(--p));
-  transition: line-height .14s linear, opacity .14s linear;
 }
 .phead__title {
   font-family: var(--font-pixel); font-weight: 400;
   font-size: calc(64px - 30px * var(--p)); line-height: 1; color: #fff; letter-spacing: 0;
   width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   margin-top: calc(12px - 12px * var(--p));
-  transition: font-size .14s linear, margin-top .14s linear;
 }
 .phead__members {
   display: flex; align-items: center; align-self: stretch;
@@ -1005,7 +1001,7 @@ button, .btn-reset { font: inherit; color: inherit; background: none; border: 0;
   max-height: calc(24px * (1 - var(--p)));
   padding-top: calc(8px * (1 - var(--p)));
   opacity: calc(1 - var(--p) * 1.6);
-  transition: max-height .14s linear, padding-top .14s linear, opacity .14s linear;
+
 }
 .phead__pad { height: 0; }
 
@@ -1446,3 +1442,8 @@ html.mockup .sheet { padding-bottom: 28px; }
 
 /* iOS приближает страницу при фокусе в поле со шрифтом меньше 16px — поэтому не меньше 16 */
 .search-field__input--tag, #goal-text { font-size: 16px; }
+
+/* ---------- шапка-накладка: список под ней не меняет ни положения, ни высоты ---------- */
+.pstick { position: absolute; top: 0; left: 0; right: 0; z-index: 25; }
+.screen--sticky { padding-top: 0; }
+.pstick .phead { margin-top: 0; }
