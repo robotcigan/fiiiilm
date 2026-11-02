@@ -153,16 +153,18 @@ const SCREENS = {
 
     return pills('folders',
         pillBtn('send', 'overlay', `share:${f.id}`) + pillBtn('more', 'overlay', `folder-menu:${f.id}`)) + `
-      <div class="phead">
-        <button class="phead__goal" data-act="overlay" data-arg="goal:${f.id}">
-          GOAL: ${esc(f.goal || 'SET UP YOUR PLAN')}</button>
-        <h2 class="phead__title">${esc(f.name)}</h2>
-        <div class="phead__pad"></div>
+      <div class="pstick">
+        <div class="phead">
+          <button class="phead__goal" data-act="overlay" data-arg="goal:${f.id}">
+            GOAL: ${esc(f.goal || 'SET UP YOUR PLAN')}</button>
+          <h2 class="phead__title">${esc(f.name)}</h2>
+          <div class="phead__pad"></div>
+        </div>
+        ${shared ? `<div class="tabs">
+          <button class="${team ? '' : 'is-active'}" data-act="go" data-arg="f/${f.id}">MY PICKS</button>
+          <button class="${team ? 'is-active' : ''}" data-act="go" data-arg="f/${f.id}/team">TEAM PICKS</button>
+        </div>` : ''}
       </div>
-      ${shared ? `<div class="tabs">
-        <button class="${team ? '' : 'is-active'}" data-act="go" data-arg="f/${f.id}">MY PICKS</button>
-        <button class="${team ? 'is-active' : ''}" data-act="go" data-arg="f/${f.id}/team">TEAM PICKS</button>
-      </div>` : ''}
       <div class="scroll scroll--cards${f.closed ? ' is-closed' : ''}">
         ${team ? teamList(f) : myList(f)}
       </div>
@@ -261,14 +263,16 @@ const SCREENS = {
     const mov = c.movies.map(x => D.byId.movie[x]).filter(Boolean);
     const unsave = (kind, x) => `<button data-act="uncollect" data-arg="${c.id}:${kind}:${x}" data-stop="1">${ic('saves')}</button>`;
     return pills('saved', pillBtn('more', 'overlay', `collection-menu:${c.id}`)) + `
-      <div class="phead">
-        <div class="phead__goal">COLLECTION</div>
-        <h2 class="phead__title">${esc(c.name)}</h2>
-        <div class="phead__pad"></div>
-      </div>
-      <div class="tabs">
-        <button class="${isMovies ? '' : 'is-active'}" data-act="go" data-arg="col/${c.id}">PEOPLE (${ppl.length})</button>
-        <button class="${isMovies ? 'is-active' : ''}" data-act="go" data-arg="col/${c.id}/movies">MOVIES (${mov.length})</button>
+      <div class="pstick">
+        <div class="phead">
+          <div class="phead__goal">COLLECTION</div>
+          <h2 class="phead__title">${esc(c.name)}</h2>
+          <div class="phead__pad"></div>
+        </div>
+        <div class="tabs">
+          <button class="${isMovies ? '' : 'is-active'}" data-act="go" data-arg="col/${c.id}">PEOPLE (${ppl.length})</button>
+          <button class="${isMovies ? 'is-active' : ''}" data-act="go" data-arg="col/${c.id}/movies">MOVIES (${mov.length})</button>
+        </div>
       </div>
       <div class="scroll scroll--cards">
         ${(isMovies ? mov : ppl).length
@@ -571,7 +575,7 @@ function renderOverlay() {
 const OVERLAYS = {
   'folder-menu'(id) {
     const shared = S.isShared(S.folder(id));
-    return `<div class="menu" style="right:14px;top:110px">
+    return `<div class="menu" style="right:14px;top:calc(var(--statusbar-h) + 56px)">
       ${shared ? `<button data-act="overlay" data-arg="members:${id}"><span style="width:16px;flex:none"></span>PARTICIPANTS</button>` : ''}
       <button data-act="overlay" data-arg="share:${id}">${ic('send', 'ic ic--sm')}SHARE</button>
       <button class="is-danger" data-act="deleteFolder" data-arg="${id}">${ic('trash', 'ic ic--sm ic--danger')}DELETE</button>
@@ -579,7 +583,7 @@ const OVERLAYS = {
   },
 
   'person-menu'(id) {
-    return `<div class="menu" style="right:14px;top:70px">
+    return `<div class="menu" style="right:14px;top:calc(var(--statusbar-h) + 56px)">
       <button data-act="pick" data-arg="${id}">${ic('plus', 'ic ic--sm')}ADD TO FOLDER</button>
       <button data-act="go" data-arg="notes/${id}">${ic('note', 'ic ic--sm')}NOTES</button>
     </div>`;
@@ -699,7 +703,7 @@ const OVERLAYS = {
   },
 
   'collection-menu'(id) {
-    return `<div class="menu" style="right:14px;top:110px">
+    return `<div class="menu" style="right:14px;top:calc(var(--statusbar-h) + 56px)">
       <button class="is-danger" data-act="deleteCollection" data-arg="${id}">${ic('trash', 'ic ic--sm ic--danger')}DELETE</button>
     </div>`;
   },
@@ -947,11 +951,16 @@ function render() {
   else if (SCREENS[r.name]) html = SCREENS[r.name]();
   else html = SCREENS.folders();
 
-  $('#app').innerHTML = bust(`<section class="screen is-active">${html}</section>`);
+  const sticky = html.includes('class="pstick"');
+  $('#app').innerHTML = bust(`<section class="screen is-active${sticky ? ' screen--sticky' : ''}">${html}</section>`);
+  setupSticky();
   // на синей шапке статус-бар светлый
+  const onBlue = !!$('#app .phead');
   $('.phone').classList.toggle('on-accent', !!$('#app .phead, #app .person-hero'));
+  const tc = $('meta[name="theme-color"]');
+  if (tc) tc.content = onBlue ? '#073DF5' : $('#app .person-hero') ? '#1C1C1E' : '#F4F5F7';
   fitInputs();
-  if (r.name === 'search' && ui.lastRoute !== location.hash) $('.sf__input')?.focus();
+  if (r.name === 'search' && ui.lastRoute !== location.hash && !matchMedia('(pointer: coarse)').matches) $('.sf__input')?.focus();
   ui.lastRoute = location.hash;
   $('#clock').textContent = new Date().toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
 }
@@ -1108,7 +1117,7 @@ document.addEventListener('pointermove', e => {
   renumber(drag.list);
 });
 
-document.addEventListener('pointerup', e => {
+function finishDrag(e) {
   if (!drag || e.pointerId !== drag.pointerId) return;
   const { el, list, moved } = drag;
   drag = null;
@@ -1133,18 +1142,45 @@ document.addEventListener('pointerup', e => {
   const fid = route().a;
   S.setMyPicks(fid, rowsOf(list).map(r => ({ personId: r.dataset.cand, dept: deptAbove(r) })));
   renumber(list);
+}
+document.addEventListener('pointerup', finishDrag);
+document.addEventListener('pointercancel', finishDrag);
+
+/* долгое нажатие на ручку на Android открывает контекстное меню и рвёт жест */
+document.addEventListener('contextmenu', e => {
+  if (e.target.closest('.cand__drag')) e.preventDefault();
 });
 
 /* ---------- сжатие шапки при прокрутке ----------
-   scroll не всплывает, поэтому слушаем на фазе перехвата. */
-const HEAD_RANGE = 140;
+   Шапка с табами (.pstick) лежит поверх списка и размера списка не меняет.
+   Список получает верхний отступ на её полную высоту, а --p считается напрямую
+   из scrollTop: пока прокручено меньше D (на столько сжимается шапка),
+   нижний край шапки идёт ровно вровень с верхом содержимого. */
+const clamp01 = x => Math.min(1, Math.max(0, x));
+
+function setupSticky() {
+  const stick = $('#app .pstick');
+  if (!stick) return;
+  const head = $('.phead', stick);
+  const sc = $('#app .scroll');
+  head.style.setProperty('--p', 0);
+  const h0 = stick.offsetHeight;
+  head.style.setProperty('--p', 1);
+  const D = Math.max(1, h0 - stick.offsetHeight);
+  stick.dataset.d = D;
+  sc.style.paddingTop = h0 + 'px';
+  head.style.setProperty('--p', clamp01(sc.scrollTop / D).toFixed(3));
+}
+window.addEventListener('resize', setupSticky);
+
+/* scroll не всплывает, поэтому слушаем на фазе перехвата */
 document.addEventListener('scroll', e => {
   const sc = e.target;
   if (!sc.classList || !sc.classList.contains('scroll')) return;
-  const head = sc.parentElement.querySelector('.phead');
-  if (!head) return;
-  const p = Math.min(1, Math.max(0, sc.scrollTop / HEAD_RANGE));
-  head.style.setProperty('--p', p.toFixed(3));
+  const stick = sc.parentElement.querySelector('.pstick');
+  if (!stick) return;
+  const D = +stick.dataset.d || 100;
+  stick.querySelector('.phead').style.setProperty('--p', clamp01(sc.scrollTop / D).toFixed(3));
 }, true);
 
 document.addEventListener('click', e => {
