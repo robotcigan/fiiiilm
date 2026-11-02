@@ -1447,3 +1447,12 @@ html.mockup .sheet { padding-bottom: 28px; }
 .pstick { position: absolute; top: 0; left: 0; right: 0; z-index: 25; }
 .screen--sticky { padding-top: 0; }
 .pstick .phead { margin-top: 0; }
+
+/* ---------- перетаскивание на сенсорных экранах ----------
+   Общее правило «touch-action: manipulation» для кнопок перебивало ручку, и Android
+   забирал вертикальный жест под прокрутку. У ручки жест должен принадлежать странице. */
+.cand .cand__drag, .cand__drag[data-act] { touch-action: none; }
+
+/* зона касания шире иконки: 20×20 пальцем не попасть, нужно хотя бы 36×48 */
+.cand__drag { position: relative; }
+.cand__drag::before { content: ''; position: absolute; inset: -14px -8px; }
