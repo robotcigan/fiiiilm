@@ -1379,3 +1379,70 @@ button, .btn-reset { font: inherit; color: inherit; background: none; border: 0;
 
 /* нижняя панель без кнопки: 12 + 52 + 34 = 98 */
 .bottombar--bare { height: 98px; }
+
+/* ======================================================================
+   Настоящая мобильная вёрстка.
+   По умолчанию приложение занимает весь экран: нет рамки, нарисованного
+   статус-бара и home indicator, отступы берутся из safe-area устройства.
+   На широком экране — колонка шириной до 430. Старый вид: ?mockup.
+   ====================================================================== */
+:root {
+  /* в браузере верх уже под адресной строкой, а в установленном приложении — под вырезом;
+     12 — минимум, чтобы кнопки не липли к краю */
+  --statusbar-h: max(env(safe-area-inset-top, 0px), 12px);
+  --safe-bottom: max(env(safe-area-inset-bottom, 0px), 12px);
+}
+
+html, body {
+  height: 100%; margin: 0; overflow: hidden; overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent;
+  background: var(--bg-canvas);
+}
+button, [data-act], .scroll { touch-action: manipulation; }
+.scroll { -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+.cand, .srow, .prj, .row, .role-row, .sheet-row, button, .tabs, .pills {
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+}
+input, textarea { -webkit-user-select: text; user-select: text; }
+
+.stage { display: block; min-height: 0; padding: 0; height: 100vh; height: 100dvh; }
+.phone {
+  position: fixed; top: 0; left: 0; right: 0; margin: 0 auto;
+  width: min(100%, 430px); height: 100vh; height: 100dvh;
+  border-radius: 0; box-shadow: 0 0 0 1px rgba(0, 0, 0, .07);
+  background: var(--bg-canvas); overflow: hidden;
+}
+.statusbar, .home-indicator { display: none; }
+
+/* нижняя панель: высоту задаёт содержимое, снизу — safe-area */
+.bottombar, .bottombar--bare { height: auto; padding-bottom: var(--safe-bottom); }
+.scroll { padding-bottom: calc(132px + var(--safe-bottom)); }
+.toast { bottom: calc(var(--safe-bottom) + 76px); }
+.sheet { padding-bottom: max(28px, var(--safe-bottom)); }
+
+/* у командных строк роль сжимается, а не наезжает на аватарки голосов */
+.cand__role span { min-width: 0; }
+.cand--team .cand__role { max-width: calc(100% - 72px); }
+
+/* ---------- ?mockup: рамка 390×844 для сверки с Figma ---------- */
+html.mockup { --statusbar-h: 54px; --safe-bottom: 34px; }
+html.mockup body { overflow: auto; background: #E9EAEE; }
+html.mockup .stage {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; height: auto; padding: 32px;
+}
+html.mockup .phone {
+  position: sticky; top: auto; left: auto; right: auto; margin: 0;
+  width: 390px; height: 844px; border-radius: 44px;
+  box-shadow: 0 0 0 11px #1c1c1e, 0 18px 50px rgba(0, 0, 0, .35);
+}
+html.mockup .statusbar { display: flex; }
+html.mockup .home-indicator { display: block; }
+html.mockup .bottombar { height: 138px; }
+html.mockup .bottombar--bare { height: 98px; }
+html.mockup .scroll { padding-bottom: 176px; }
+html.mockup .toast { bottom: 110px; }
+html.mockup .sheet { padding-bottom: 28px; }
+
+/* iOS приближает страницу при фокусе в поле со шрифтом меньше 16px — поэтому не меньше 16 */
+.search-field__input--tag, #goal-text { font-size: 16px; }
